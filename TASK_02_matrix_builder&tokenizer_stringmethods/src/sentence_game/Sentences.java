@@ -2,7 +2,7 @@ package sentence_game;
 
 import java.util.Scanner;
 
-public class Frases {
+public class Sentences {
 
 	public static void main(String[] args) {
 		
@@ -12,7 +12,7 @@ public class Frases {
 		Scanner read = new Scanner(System.in);
 		
 		
-		System.out.println("Escribe un texto: ");
+		System.out.println("Write a text: ");
 		
 		
 		
@@ -22,20 +22,20 @@ public class Frases {
 		
 		
 		
-		System.out.println("El número de letras de la frase es: " + sentence.length());
+		System.out.println("The number of the letters in the sentence is: " + sentence.length());
 		
-		System.out.println("La frase en mayúsculas: " + sentence.toUpperCase());
+		System.out.println("The sentence in capital letters is: " + sentence.toUpperCase());
 		
-		String[] atributosSentence = sentence.split(" ");
+		String[] atributesSentence = sentence.split(" ");
 		
 		
 		
-		System.out.println("Palabra a palabra");
+		System.out.println("word by word");
 		
-		for(String atributos: atributosSentence) {
+		for(String atributes: atributesSentence) {
 			
 			
-			System.out.println(" " + atributos); // Recorremos el array
+			System.out.println(" " + atributes); // loop through the array
 			
 		}
 		
@@ -51,20 +51,20 @@ public class Frases {
 		
 		
 		
-		int n_minusculas = 0;
+		int n_lowercase = 0;
 		
 		for ( int i = 0; i < sentence.length(); i++) {
 			
 			if (Character.isLowerCase(sentence.charAt(i))) {
 				
-				n_minusculas ++;
+				n_lowercase ++;
 				
 			}
 						
 		}
 		
 		
-		System.out.println("Hay " + n_minusculas + " letras minúsculas.");
+		System.out.println("There are " + n_lowercase + " lowercase letters.");
 		
 		
 		
@@ -77,7 +77,7 @@ public class Frases {
 		
 		
 		
-		System.out.println("EL TRIÁNGULO");
+		System.out.println("THE TRIANGLE");
 		
 		
 		
