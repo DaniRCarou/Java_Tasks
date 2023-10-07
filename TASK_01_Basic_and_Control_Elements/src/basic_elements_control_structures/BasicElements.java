@@ -1,12 +1,12 @@
 package basic_elements_control_structures;
 
-public class ElementosBasicos {
+public class BasicElements {
 
 	public static void main(String[] args) {
 		
 		
 		
-		// Ejercicio 1
+		// Exercise 1
 
 		// Declara una variable llamada num1 y asígnale un valor al azar del 1 al 20. 
 		// Luego declara otra variable llamada num2. 

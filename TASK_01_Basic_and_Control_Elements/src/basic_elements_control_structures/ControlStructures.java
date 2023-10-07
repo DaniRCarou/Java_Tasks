@@ -1,6 +1,6 @@
 package basic_elements_control_structures;
 
-public class EstructurasDeControl {
+public class ControlStructures {
 
 	public static void main(String[] args) {
 		

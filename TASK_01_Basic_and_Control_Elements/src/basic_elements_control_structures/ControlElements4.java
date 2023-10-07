@@ -1,11 +1,11 @@
 package basic_elements_control_structures;
 
-public class ElementosDeControl4 {
+public class ControlElements4 {
 
 	public static void main(String[] args) {
 		
 		
-		// Ejercicio 5
+		// Exercise 5
 
 		// Realiza un programa en Java que genere un número al azar entre 1 y 5. 
 		// Una vez generado deberás utilizar una estructura alternativa múltiple (switch) para escribir en pantalla una cadena de texto diferente, según el número generado.

@@ -87,7 +87,7 @@ public abstract class Person {
 	// Class methods
 	
 	
-	public String llamar(Person p) {
+	public String call(Person p) {
 		
 		return name + " calling " + p.name;	
 		
@@ -105,8 +105,7 @@ public abstract class Person {
 	
 	@Override
 	public String toString() {
-		return "Person [nif=" + nif + ", name=" + name + ", address=" + address + ", phone=" + phone
-				+ "]";
+		return "Person [nif=" + nif + ", name=" + name + ", address=" + address + ", phone=" + phone + "]";
 	}
 
 	
