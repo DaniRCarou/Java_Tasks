@@ -6,10 +6,12 @@ public class ControlStructures {
 		
 		
 		
-	// Ejercicio 2
+		// Exercise 2
 
-	// Necesitamos contar en orden inverso de 10 en 10 desde 100 hasta 10 (100, 90, 80, …, 10). 
-	// Realiza dos programas en Java, cada uno de ellos con dos estructuras de control distintas, que realicen la tarea indicada.	
+		/*		 
+		  We need to count in reverse order of 10 by 10 from 100 to 10 (100, 90, 80, …, 10). 
+		  Create two Java programs, each with two different control structures, that perform the indicated task.		
+		*/
 		
 		
 		System.out.println("------------while-----------\n");

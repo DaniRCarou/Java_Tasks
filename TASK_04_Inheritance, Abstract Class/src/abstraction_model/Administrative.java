@@ -71,7 +71,7 @@ public class Administrative extends Person {
 	}
 	
 	
-	
+
 	
  	 
 	

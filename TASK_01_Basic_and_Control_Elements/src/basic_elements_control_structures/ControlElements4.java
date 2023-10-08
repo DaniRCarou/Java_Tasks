@@ -7,29 +7,33 @@ public class ControlElements4 {
 		
 		// Exercise 5
 
-		// Realiza un programa en Java que genere un número al azar entre 1 y 5. 
-		// Una vez generado deberás utilizar una estructura alternativa múltiple (switch) para escribir en pantalla una cadena de texto diferente, según el número generado.
+		/*
+		 Create a Java program that generates a random number between 1 and 5. 
+		 Once generated, you must use a multiple alternative structure (switch) to write a different text string on the screen, 
+		 depending on the number generated.
+		*/
+
+
+		
+		int random = (int)(Math.random() * 10 + 1);  // also -> random = (int) (Math.random()*5+1);
 		
 		
-		int aleatorio = (int)(Math.random() * 10 + 1);  // también valdría -> aleatorio = (int) (Math.random()*5+1);
 		
-		
-		
-		while(aleatorio > 5) {			
+		while(random > 5) {			
 			
-			aleatorio = (int)(Math.random() * 10 + 1);			
+			random = (int)(Math.random() * 10 + 1);			
 			
 		}
 		
 		
 		
-		switch(aleatorio){
+		switch(random){
 		
 		case 1: 
 			
 		System.out.println("Hello");
 			
-			break; 							// Sin "break" no leería cada línea y solo mostraría la línea "default" // Without "break" it wouldn´t read each line and would only show the "default" line
+			break; 							// Without "break" couldn´t read each line and only would show the line "default"
 			
 		case 2:
 			
