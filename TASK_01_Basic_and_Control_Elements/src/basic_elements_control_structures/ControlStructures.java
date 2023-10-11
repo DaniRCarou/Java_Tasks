@@ -7,11 +7,15 @@ public class ControlStructures {
 		
 		
 		// Exercise 2
+		
 
 		/*		 
+		  
 		  We need to count in reverse order of 10 by 10 from 100 to 10 (100, 90, 80, …, 10). 
-		  Create two Java programs, each with two different control structures, that perform the indicated task.		
-		*/
+		  Create two Java programs, each with two different control structures, that perform the indicated task.	
+		  	
+		*/		
+		
 		
 		
 		System.out.println("------------while-----------\n");

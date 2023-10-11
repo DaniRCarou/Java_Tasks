@@ -6,15 +6,16 @@ public class ControlStructures3 {
 		
 		
 		// Exercise 4
+		
 
 		/*
+		  
 		 Create a Java program that generates random numbers between 1 and 10. 
 		 Each generated number must be displayed on the screen, ending when the number 7 is generated. 
 		 The program must also report how many numbers had to be generated to obtain the 7.
+		 
 		*/
-		
-		
-		
+				
 		
 		
 		int random = (int)(Math.random() * 10 + 1);

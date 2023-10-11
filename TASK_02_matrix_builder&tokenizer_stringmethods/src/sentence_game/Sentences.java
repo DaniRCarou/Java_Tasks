@@ -8,6 +8,21 @@ public class Sentences {
 		
 		
 		
+		// Exercise 2
+
+		/* 
+		 
+		 Write a Java program that works according to the following specifications: 
+
+		    - It must allow the user to enter text via keyboard.
+		    - The length of the text (number of characters) will be displayed on the screen.
+		    - The text will be displayed in capital letters.
+		    - The text will be displayed separated by words (each word on one line) using the split() method.
+		    - The number of lowercase letters will be counted.
+		    - A triangle will be displayed with the entered text.
+		
+		 */
+		
 		
 		Scanner read = new Scanner(System.in);
 		
@@ -32,8 +47,7 @@ public class Sentences {
 		
 		System.out.println("word by word");
 		
-		for(String atributes: atributesSentence) {
-			
+		for(String atributes: atributesSentence) {			
 			
 			System.out.println(" " + atributes); // loop through the array
 			

@@ -11,9 +11,11 @@ public class ControlStructures2 {
 		// Exercise 3
 
 		/*
+		 
 		 Create a Java program that generates a random number between 1 and 10. 
 		 Once generated, if the number is greater than 5, it will display the message “Today is going to be a great day”, 
 		 otherwise it will display the message “Today "It's going to be the best day in the world."
+		 
 		*/
 
 		
@@ -24,11 +26,11 @@ public class ControlStructures2 {
 		
 		if(random > 5) {		
 			
-			System.out.println("Today is goint to be a big day!!");
+			System.out.println("Today is going to be a great day!!");
 			
 		}else
 			
-			System.out.println("Today is goint to be the best day!!");
+			System.out.println("Today is going to be the best day!!");
 		
 		
 		

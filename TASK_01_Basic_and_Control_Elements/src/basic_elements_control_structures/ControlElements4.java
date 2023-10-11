@@ -6,16 +6,21 @@ public class ControlElements4 {
 		
 		
 		// Exercise 5
+		
 
 		/*
+		 
 		 Create a Java program that generates a random number between 1 and 5. 
 		 Once generated, you must use a multiple alternative structure (switch) to write a different text string on the screen, 
 		 depending on the number generated.
+		 
 		*/
 
 
 		
-		int random = (int)(Math.random() * 10 + 1);  // also -> random = (int) (Math.random()*5+1);
+		int random = (int)(Math.random() * 10 + 1);   // also -> random = (int) (Math.random()*5+1);
+		
+		
 		
 		
 		
@@ -24,6 +29,8 @@ public class ControlElements4 {
 			random = (int)(Math.random() * 10 + 1);			
 			
 		}
+		
+		
 		
 		
 		
