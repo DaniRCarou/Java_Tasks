@@ -36,6 +36,9 @@ public class SavingShowingTexts {
 
 
 		
+		
+		
+		
 				
 		// Here you should allow the user to enter multiple texts ending when they type the word END.
 		
