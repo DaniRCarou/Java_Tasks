@@ -13,11 +13,15 @@ import java.util.Scanner;
 /*
 
  In this example we are going to see how we can collect two numbers from a client application and send them to the server so that it returns a response with the result of the sum of both.
+ SERVER MUST RUN
 
 */
 
 
 public class ClientSocket {
+	
+	
+	
 	
 	//IP and Port to which we are going to connect
 	
@@ -32,7 +36,7 @@ public class ClientSocket {
 		
 		
 		
-		System.out.println(" -----------------------      CLIENT APPLICATION     ----------------------- ");
+		System.out.println(" -----------------------      CLIENT APPLICATION     -----------------------\n ");
 		
 		
 		// In this object we are going to encapsulate the IP and the port to which we are going to connect
@@ -41,7 +45,7 @@ public class ClientSocket {
 		
 		
 		
-		
+		// A Socket Object is created to connect with the server
 		
 		try (Scanner sc = new Scanner(System.in); Socket socketToServer = new Socket()) {
 					
@@ -80,7 +84,7 @@ public class ClientSocket {
 			
 			// Connection was established
 			
-			System.out.println("CLIENTE: established connection... to " + IP_SERVER + " por el puerto " + PORT);		
+			System.out.println("CLIENTE: established connection... to " + IP_SERVER + " through port " + PORT);		
 			
 			
 			
