@@ -10,7 +10,9 @@ import java.net.Socket;
 
 public class Server_Socket {
 	
+	
 	public static final int PORT = 2017;
+	
 	
 	public static void main(String[] args) throws InterruptedException {
 		
@@ -90,7 +92,9 @@ public class Server_Socket {
 				
 				socketToClient = serverSocket.accept();
 				
-				System.out.println("SERVER: request number: " + ++request + " received");
+				System.out.println("\n----------------- REQUEST NUMBER: " + ++request + " -------------------------\n"); // with "++request" automatically 1 is added to "int request"
+				
+				System.out.println("SERVER: request number: " + request + " received");
 				
 				
 				

@@ -23,6 +23,7 @@ public class ClientSocket {
 	
 	
 	
+	
 	//IP and Port to which we are going to connect
 	
 	public static final int PORT = 2017;
