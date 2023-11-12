@@ -22,7 +22,7 @@ import java.util.Scanner;
 
 
 
-public class SocketClienteHilo {
+public class SocketClientThread {
 	
 	
 	
