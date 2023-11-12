@@ -2,7 +2,7 @@ package basic;
 
 
 
-//"Threads" objects can be created and started automatically (see constructor of ThreadsThis_04 class)
+// "Threads" objects can be created and started automatically (see constructor of ThreadsThis_04 class)
 
 
 
@@ -42,8 +42,8 @@ public class ThreadsThis_04 implements Runnable {
 	
 	
 	
-	// You have to implement the run method, because Runnable is an interface and doesn´t have functionality 																	| Debemos sobreescribir el método run
-	// The run method is like an independent thread, whose duration will be the duration of the method itself. 	| Tenemos que entender el método run, como un hilo independiente, cuya duración será la duración del propio método.
+	// You have to implement the run method, because Runnable is an interface and doesn´t have functionality 	
+	// The run method is like an independent thread, whose duration will be the duration of the method itself. 	
 				
 	@Override
 	public void run() {
@@ -59,7 +59,7 @@ public class ThreadsThis_04 implements Runnable {
 
 			try {
 				
-				Thread.sleep(500); // Simulation of task that sleeps the thread for 500 milliseconds 							| Simulación de tarea que duerme el hilo durante 500 milisegundos
+				Thread.sleep(500); // Simulation of task that sleeps the thread for 500 milliseconds 			
 				
 			} catch (InterruptedException e) {
 				

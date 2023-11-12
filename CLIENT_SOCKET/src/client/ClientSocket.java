@@ -24,7 +24,7 @@ public class ClientSocket {
 	
 	
 	
-	//IP and Port to which we are going to connect
+	// IP and Port to which we are going to connect
 	
 	public static final int PORT = 2017;
 	public static final String IP_SERVER = "localhost";
@@ -69,7 +69,7 @@ public class ClientSocket {
 			// MODE OF SENDING INFORMATION
 			// It is stablished how the numbers will be sent. With a hyphen "-", between the numbers.
 			
-			String operandos = number1 + "-" + number2; // 3-4
+			String operands = number1 + "-" + number2; // 3-4
 			
 					
 			
@@ -98,7 +98,7 @@ public class ClientSocket {
 			
 			// The information is sent through the Stream
 			
-			output.println(operandos);//3-4
+			output.println(operands);//3-4
 			
 			
 			

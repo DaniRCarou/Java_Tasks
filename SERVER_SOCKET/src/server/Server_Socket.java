@@ -101,7 +101,7 @@ public class Server_Socket {
 				
 				
 				// INFORMATION INPUT
-				// An object is created that allow us to read the client output
+				// An object is created that allow us to read the server input
 				
 				input = new InputStreamReader(socketToClient.getInputStream());
 				
@@ -123,15 +123,15 @@ public class Server_Socket {
 				
 				// It is known that the client sends us the information "number-number", so it is indicated that the information will come with a split "-"
 				
-				String[] operators = stringReceived.split("-");
+				String[] operands = stringReceived.split("-");
 				
 				// The first number is saved in this variable but it has to be changed to Integer. The number is  3
 				
-				int iNumber1 = Integer.parseInt(operators[0]);
+				int iNumber1 = Integer.parseInt(operands[0]);
 				
 				// The second number is saved in this variable but it has to be changed to Integer. The number is  4
 				
-				int iNumber2 = Integer.parseInt(operators[1]); // The first number is saved in this variable but it has to be changed to Integer. The number is  34
+				int iNumber2 = Integer.parseInt(operands[1]); // The first number is saved in this variable but it has to be changed to Integer. The number is  34
 				
 				
 				
