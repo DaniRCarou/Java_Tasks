@@ -40,15 +40,15 @@ public class Library implements Runnable{
 	
 	private void cargarLibros() {
 	
-	biblioteca.add(new Book("1234", 20, "El día de la bestia", "Ricardo falacias"));
+	biblioteca.add(new Book("1234", 20, "Ricardo falacias", "El día de la bestia"));
 	
-	biblioteca.add(new Book("5678", 30, "Schreck", "Alba Nada"));
+	biblioteca.add(new Book("5678", 30, "Alba Nada", "Schreck"));
 	
-	biblioteca.add(new Book("9012", 40, "La ruta", "Juan Todo"));
+	biblioteca.add(new Book("9012", 40, "Juan Todo", "La ruta"));
 	
-	biblioteca.add(new Book("3456", 50, "Los 4 jarrones", "María Roca"));
+	biblioteca.add(new Book("3456", 50, "María Roca", "Los 4 jarrones"));
 	
-	biblioteca.add(new Book("7890", 60, "La galleta de la mala suerte", "Juan Todo"));
+	biblioteca.add(new Book("7890", 60, "Juan Todo", "La galleta de la mala suerte"));
 	
 	}
 	
@@ -79,18 +79,30 @@ public class Library implements Runnable{
 			
 			boolean continuar = true;				
 			
-			while (continuar) {			
+			while (continuar) {	
+				
 				
 				
 				String stringRecibido = entradaBuffer.readLine();	
 				
-				String[] datos = stringRecibido.split("-");
-				
-				int caso = Integer.parseInt(datos[0]); 
-				
-				String complemento = datos[1]; 			
+				String[] datos = stringRecibido.split("-");	
 				
 				
+				
+				int caso = Integer.parseInt(datos[0]); 			
+				
+				String complement = datos[1];	
+				
+						
+				
+				int price = Integer.parseInt(datos[2]);        // PROBLEM
+								
+				String author = datos[3];
+				
+				String title = datos[4];
+						
+				
+								
 				if (caso == 0) {	
 					
 					
@@ -109,7 +121,7 @@ public class Library implements Runnable{
 					
 					for(Book libro: biblioteca) {
 						
-						if(libro.getIsbn().equalsIgnoreCase(complemento)) 						
+						if(libro.getIsbn().equalsIgnoreCase(complement)) 						
 							
 							estanteria.add(libro);						
 						
@@ -125,7 +137,7 @@ public class Library implements Runnable{
 					  
 						for(Book libro: biblioteca) {
 							
-							if(libro.getTitulo().equalsIgnoreCase(complemento))						
+							if(libro.getTitulo().equalsIgnoreCase(title))						
 							
 								estanteria.add(libro);						
 							
@@ -141,7 +153,7 @@ public class Library implements Runnable{
 							
 							for(Book libro: biblioteca) {
 								
-								if(libro.getNombre().equalsIgnoreCase(complemento)) 						
+								if(libro.getNombre().equalsIgnoreCase(author)) 						
 								
 									estanteria.add(libro);						
 								
@@ -151,13 +163,11 @@ public class Library implements Runnable{
 							salida.println(estanteria);
 							
 					
-				  }	else if (caso == 4) {						
-						
-								Book addedBook = new Book(complemento, caso, complemento, complemento);		
+				  }	else if (caso == 4) {									 		
 							
-								biblioteca.add(addedBook);
+								biblioteca.add(new Book(complement, price, author, title));
 								
-								salida.println("Libro añadido");							
+								salida.println("added");							
 							
 								
 					

@@ -72,27 +72,15 @@ public class SocketClientThread {
 				
 				case 1:				
 					
-					System.out.println("Opción seleccionada: " + opcion + " -> Por favor, introduzca el código ISBN");
-									
-										
-					/*
-					 Consumir la nueva línea pendiente antes de leer la entrada del usuario. En este caso, se agrega sc.nextLine() antes de la lectura real de la entrada del usuario. Esto ayuda a consumir la nueva línea pendiente después de la opción seleccionada en el menú. 
-					 Después de hacer esto, deberías poder leer la entrada del usuario correctamente sin que aparezca el mensaje "No has escrito nada" sin motivo aparente. 
-					 Cuando se trabaja con la entrada estándar en Java, especialmente con objetos Scanner, es posible que queden caracteres de nueva línea ('\n') pendientes en el búfer del sistema después de leer un valor numérico o una cadena. Esto es común, por ejemplo, cuando lees un número con nextInt() y luego realizas una lectura adicional con nextLine().
-
-					 La línea "// Consumir la nueva línea pendiente antes de leer la entrada del usuario" se refiere a agregar una llamada a nextLine() adicional para consumir explícitamente esa nueva línea que queda en el búfer después de leer la opción numérica del menú. Esto es necesario porque después de que el usuario ingrese un número y presione "Enter", el carácter de nueva línea ('\n') queda en el búfer del sistema.
-					 Cuando luego llamas a nextLine() para leer la entrada del usuario (por ejemplo, el código ISBN), si no consumes ese carácter de nueva línea pendiente, nextLine() podría simplemente leer ese carácter y devolver una cadena vacía.
-					 Por lo tanto, agregar sc.nextLine() antes de leer la entrada real del usuario garantiza que cualquier carácter de nueva línea pendiente se consuma antes de leer la entrada del usuario, evitando problemas inesperados con las entradas del usuario.
+					System.out.println("Opción seleccionada: " + opcion + " -> Por favor, introduzca el código ISBN");				
 					
-					*/
-					
-					// sc.nextLine();
 					
 					texto = sc.nextLine();
 					
-					String datos = opcion + "-" + texto;
+					String datos = opcion + "-" + texto + "-" + 0 + "-" + null + "-" + null;
 					
-					salida.println(datos);					
+					salida.println(datos);	
+					
 					
 					break;
 					
@@ -100,56 +88,65 @@ public class SocketClientThread {
 					
 					System.out.println("Opción seleccionada: " + opcion + " -> Por favor, introduzca el título del libro");
 					
-					// sc.nextLine();
+					
 					
 					texto = sc.nextLine();
 					
-					datos = opcion + "-" + texto;
+					datos = opcion + "-" + null + "-" + 0 + "-" + null + "-" + texto;
 					
 					salida.println(datos);	
+					
 					
 					break;
 					
 				case 3:				
 										
-					System.out.println("Opción seleccionada: " + opcion + " -> Por favor, introduzca el autor del libro");
-					
-					// sc.nextLine();
+					System.out.println("Opción seleccionada: " + opcion + " -> Por favor, introduzca el autor del libro");					
 					
 					texto = sc.nextLine();
 					
-					datos = opcion + "-" + texto;
+					datos = opcion + "-" + null + "-" + 0 + "-" + texto + "-" + null;
 					
 					salida.println(datos);
+					
 					
 					break;
 					
 				case 4:				
 					
-					System.out.println("Opción seleccionada: " + opcion + " -> Por favor, introduzca los datos del libro");
+					System.out.println("Selected option: " + opcion + " -> Please, enter the book data");
+					
 					
 					System.out.println("\nISBN: ");
 					
 					String isbn = sc.nextLine();
 					
-					System.out.println("\nPRECIO: ");
 					
-					int precio = sc.nextInt();
+					System.out.println("\nPRICE: ");			
 					
-					System.out.println("\nTITULO: ");
+					int price = sc.nextInt();					
 					
-					String titulo = sc.nextLine();
-					
-					System.out.println("\nAUTOR: ");
-					
-					String autor = sc.nextLine();
+					sc.nextLine();					
 					
 					
-					datos = opcion + "-" + isbn + precio + titulo + autor;
+					System.out.println("\nAUTHOR: ");
+					
+					String author = sc.nextLine();
+					
+					
+					System.out.println("\nTITLE: ");
+					
+					String title = sc.nextLine();
+					
+					
+					datos = opcion + "-" + isbn + "-" + price + "-" + author  + "-" + title ;
+									
 					
 					salida.println(datos);
 					
+					
 					break;
+					
 					
 				case 0: // Este caso no hace nada, se lo salta, porque así está indicado en el "while"
 					
@@ -173,15 +170,27 @@ public class SocketClientThread {
 			
 			if(respuesta.trim().equalsIgnoreCase("OK"))	{
 				
-			System.out.println( respuesta + ", Comunicación cerrada"); // CONSOLA	
+				
+			System.out.println( respuesta + ", Comunicación cerrada"); // CONSOLE	
+			
 			
 			}else if (respuesta.trim().equalsIgnoreCase("NO")) {	
 				
-				System.out.println("\nEL LIBRO SOLICITADO NO EXISTE\n"); // CONSOLA	
+				
+				System.out.println("\nEL LIBRO SOLICITADO NO EXISTE\n"); // CONSOLE	
+				
+			
+			}else if (respuesta.trim().equalsIgnoreCase("added")) {	
+				
+				
+				System.out.println("\nEL LIBRO SE HA AÑADIDO CORRECTAMENTE\n"); // CONSOLE	
+				
 			
 			}else	
 				
-				System.out.println("\nEl libro solicitado es: " + respuesta + "\n"); // CONSOLA		
+				
+				System.out.println("\nEl libro solicitado es: " + respuesta + "\n"); // CONSOLE	
+			
 			
 				
 			}while(opcion!=0);
