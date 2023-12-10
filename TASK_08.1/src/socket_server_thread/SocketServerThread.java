@@ -17,7 +17,7 @@ public class SocketServerThread {
 	
 	
 	
-	public static final int PUERTO = 2018;
+	public static final int PORT = 2018;
 	
 	
 	
@@ -26,17 +26,17 @@ public class SocketServerThread {
 		
 		 
 		
-		try (ServerSocket socketServidor = new ServerSocket()){		
+		try (ServerSocket serverSocket = new ServerSocket()){		
 			
 			
 			
 			
-			InetSocketAddress direccion = new InetSocketAddress(PUERTO);  		
+			InetSocketAddress address = new InetSocketAddress(PORT);  		
 			
 			
 		
 			
-			socketServidor.bind(direccion); 			
+			serverSocket.bind(address); 			
 			
 			
 			
@@ -46,12 +46,12 @@ public class SocketServerThread {
 				
 				
 				
-				Socket socketAlCliente = socketServidor.accept();											
+				Socket socketToClient = serverSocket.accept();											
 							
 				
 				
 				
-				new Library(socketAlCliente);
+				new Library(socketToClient);
 				
 				
 			}	
@@ -60,12 +60,12 @@ public class SocketServerThread {
 			
 		} catch (IOException e) {
 			
-			System.err.println("SERVIDOR: Error de entrada/salida");
+			System.err.println("SERVER: Input/output ERROR");
 			e.printStackTrace();
 			
 		} catch (Exception e) {
 			
-			System.err.println("SERVIDOR: Error");
+			System.err.println("SERVER: ERROR");
 			e.printStackTrace();
 			
 		}

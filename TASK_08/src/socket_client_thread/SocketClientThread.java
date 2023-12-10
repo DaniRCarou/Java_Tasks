@@ -9,14 +9,24 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Scanner;
 
+
+
+
 public class SocketClientThread {
+	
+	
+	
 	
 	
 	static Scanner sc;
 	
-	public static final int PUERTO = 2018;
+	public static final int PORT = 2018;
 	
 	public static final String IP_SERVER = "localhost";
+	
+	
+	
+	
 	
 	
 	
@@ -25,203 +35,231 @@ public class SocketClientThread {
 		
 		
 		
-		InetSocketAddress direccionServidor = new InetSocketAddress(IP_SERVER, PUERTO);	
+		
+		
+		InetSocketAddress serverAddress = new InetSocketAddress(IP_SERVER, PORT);	
+		
+		
+		
 		
 		
 		
 		try{	
 			
 			
+			
 			sc = new Scanner(System.in);
 			
 			
 			
-			Socket socketAlServidor = new Socket();					
 			
-			socketAlServidor.connect(direccionServidor);		
+			Socket socketToServer = new Socket();					
 			
-			
-			
-			
-			InputStreamReader entrada = new InputStreamReader(socketAlServidor.getInputStream());		
-			
-			BufferedReader entradaBuffer = new BufferedReader(entrada);	
+			socketToServer.connect(serverAddress);		
 			
 			
 			
 			
-			PrintStream salida = new PrintStream(socketAlServidor.getOutputStream());
+			InputStreamReader input = new InputStreamReader(socketToServer.getInputStream());		
+			
+			BufferedReader bufferInput = new BufferedReader(input);	
 			
 			
 			
-			int opcion = 0;
 			
-			String texto = "";	
+			PrintStream output = new PrintStream(socketToServer.getOutputStream());
+			
+			
+			
+			
+			
+			String isbn = null;
+			
+			int price = 0;
+			
+			String author = null;
+			
+			String title = null;
+			
+			
+			
+			
+			
+			
+			int option = 0;
+			
+			String text = "";	
 			
 			do {
 				
 				
-				opcion = menu(); // Se muestra el menú en pantalla, se elige una opción y esa opción se guarda en esta variable.
+				
+				option = menu(); // The menu is displayed in the console, an option must be selected and after that will be saved on this variable (option).
 				
 				
+			
 				
-			switch(opcion) {
+			// Now, this option would be compare with every case to display a message and introduce new data to send them to the server.
+				
+			switch(option) {
 			
 			
 					
 				
 				case 1:				
 					
-					System.out.println("Opción seleccionada: " + opcion + " -> Por favor, introduzca el código ISBN");				
+					System.out.println("Selected option: " + option + " -> Please, enter the ISBN code:");	// Displayed message			
 					
 					
-					texto = sc.nextLine();
+					text = sc.nextLine(); // Introduce new data
 					
-					String datos = opcion + "-" + texto + "-" + 0 + "-" + null + "-" + null;
+					String data = option + "-" + text + "-" + 0 + "-" + null + "-" + null; // Here all the data is gathered, separated by a hyphen and the data that is not entered through the console will be filled in as null
 					
-					salida.println(datos);	
+					output.println(data);	// data is sent
 					
 					
 					break;
 					
 				case 2:				
 					
-					System.out.println("Opción seleccionada: " + opcion + " -> Por favor, introduzca el título del libro");
+					System.out.println("Selected option: " + option + " -> Please, enter the book title");
 					
 					
 					
-					texto = sc.nextLine();
+					text = sc.nextLine();
 					
-					datos = opcion + "-" + null + "-" + 0 + "-" + null + "-" + texto;
+					data = option + "-" + isbn + "-" + price + "-" + author  + "-" + title ;
 					
-					salida.println(datos);	
+					output.println(data);	
 					
 					
 					break;
 					
 				case 3:				
 										
-					System.out.println("Opción seleccionada: " + opcion + " -> Por favor, introduzca el autor del libro");					
+					System.out.println("Selected option: " + option + " -> Please, enter the book's author");					
 					
-					texto = sc.nextLine();
+					text = sc.nextLine();
 					
-					datos = opcion + "-" + null + "-" + 0 + "-" + texto + "-" + null;
+					data = option + "-" + isbn + "-" + price + "-" + author  + "-" + title ;
 					
-					salida.println(datos);
+					output.println(data);
 					
 					
 					break;
 					
 				case 4:				
 					
-					System.out.println("Selected option: " + opcion + " -> Please, enter the book data");
+					System.out.println("Selected option: " + option + " -> Please, enter the book's data");
 					
 					
 					System.out.println("\nISBN: ");
 					
-					String isbn = sc.nextLine();
+					isbn = sc.nextLine();
 					
 					
 					System.out.println("\nPRICE: ");			
 					
-					int price = sc.nextInt();					
+					price = sc.nextInt();					
 					
 					sc.nextLine();					
 					
 					
 					System.out.println("\nAUTHOR: ");
 					
-					String author = sc.nextLine();
+					author = sc.nextLine();
 					
 					
 					System.out.println("\nTITLE: ");
 					
-					String title = sc.nextLine();
+					title = sc.nextLine();
 					
 					
-					datos = opcion + "-" + isbn + "-" + price + "-" + author  + "-" + title ;
+					data = option + "-" + isbn + "-" + price + "-" + author  + "-" + title ;
 									
 					
-					salida.println(datos);
+					output.println(data);
 					
 					
 					break;
 					
 					
-				case 0: // Este caso no hace nada, se lo salta, porque así está indicado en el "while"
+				case 0: 
 					
-					salida.println(opcion);				
+					data = option + "-" + isbn + "-" + price + "-" + author  + "-" + title ;
+					
+					output.println(data);				
 					
 					break;					
 					
 								
 					default: 
 						
-						System.out.println("Opción incorrecta");
+						System.out.println("wrong option");
 				
 				
 			}
 			
 			
 							
-			String respuesta = entradaBuffer.readLine(); // ENTRADA	
+			String answer = bufferInput.readLine(); // INPUT	
 			
 			
 			
-			if(respuesta.trim().equalsIgnoreCase("OK"))	{
+			if(answer.trim().equalsIgnoreCase("OK"))	{
 				
 				
-			System.out.println( respuesta + ", Comunicación cerrada"); // CONSOLE	
+			System.out.println( answer + ", Closed communication"); // CONSOLE	
 			
 			
-			}else if (respuesta.trim().equalsIgnoreCase("NO")) {	
+			}else if (answer.trim().equalsIgnoreCase("NO")) {	
 				
 				
-				System.out.println("\nEL LIBRO SOLICITADO NO EXISTE\n"); // CONSOLE	
+				System.out.println("\nTHE REQUESTED BOOK DOES NOT EXIST\n"); // CONSOLE	
 				
 			
-			}else if (respuesta.trim().equalsIgnoreCase("added")) {	
+			}else if (answer.trim().equalsIgnoreCase("added")) {	
 				
 				
-				System.out.println("\nEL LIBRO SE HA AÑADIDO CORRECTAMENTE\n"); // CONSOLE	
+				System.out.println("\nTHE BOOK HAS BEEN ADDED SUCCESSFULLY\n"); // CONSOLE	
 				
 			
 			}else	
 				
 				
-				System.out.println("\nEl libro solicitado es: " + respuesta + "\n"); // CONSOLE	
+				System.out.println("\nThe requested book is: " + answer + "\n"); // CONSOLE	
 			
 			
 				
-			}while(opcion!=0);
+			}while(option!=0);
 			
-			System.out.println("Salida realizada");
+			System.out.println("Exit done");
 			
 			
 			sc.close();	
 			
-			socketAlServidor.close();
+			socketToServer.close();
 			
 			
 		} catch (UnknownHostException e) {
 			
-			System.err.println("CLIENTE: No encuentro el servidor en la dirección" + IP_SERVER);
+			System.err.println("CLIENT: Server with this adress " + IP_SERVER +  " not found.");
 			e.printStackTrace();
 			
 		} catch (IOException e) {
 			
-			System.err.println("CLIENTE: Error de entrada/salida");
+			System.err.println("CLIENT: input/ouput ERROR");
 			e.printStackTrace();
 			
 		} catch (Exception e) {
 			
-			System.err.println("CLIENTE: Error -> " + e);
+			System.err.println("CLIENT: ERROR -> " + e);
 			e.printStackTrace();
 			
 		}
 		
 		
-		System.out.println("CLIENTE: Fin del programa");
+		System.out.println("CLIENT: End of the program");
 		
 			
 			
@@ -241,30 +279,31 @@ public class SocketClientThread {
 		
 			
 			
-		System.out.println("Teclea una opcion de 1 a 4 o 0 para salir" + "\n");	
+		System.out.println("Type an option from 1 to 4 or 0 to exit" + "\n");	
 		
-		System.out.println("1. Consultar libro por ISBN" );
+		System.out.println("1. Consult book by ISBN" );
 			
-		System.out.println("2. Consultar libro por titulo");
+		System.out.println("2. Consult book by title");
 			
-		System.out.println("3. Consultar libro por autor");
+		System.out.println("3. Consult book by author");
 		
-		System.out.println("4. Añadir libro" + "\n");
+		System.out.println("4. Add a book" + "\n");
 			
-		System.out.println("0. Si desea salir de la aplicación");
+		System.out.println("0. If you wish to exit the application");
 		
 			
 			
 		opcion = sc.nextInt();
 		
 		/*
-		 Consumir la nueva línea pendiente antes de leer la entrada del usuario. En este caso, se agrega sc.nextLine() antes de la lectura real de la entrada del usuario. Esto ayuda a consumir la nueva línea pendiente después de la opción seleccionada en el menú. 
-		 Después de hacer esto, deberías poder leer la entrada del usuario correctamente sin que aparezca el mensaje "No has escrito nada" sin motivo aparente. 
-		 Cuando se trabaja con la entrada estándar en Java, especialmente con objetos Scanner, es posible que queden caracteres de nueva línea ('\n') pendientes en el búfer del sistema después de leer un valor numérico o una cadena. Esto es común, por ejemplo, cuando lees un número con nextInt() y luego realizas una lectura adicional con nextLine().
 
-		 La línea "// Consumir la nueva línea pendiente antes de leer la entrada del usuario" se refiere a agregar una llamada a nextLine() adicional para consumir explícitamente esa nueva línea que queda en el búfer después de leer la opción numérica del menú. Esto es necesario porque después de que el usuario ingrese un número y presione "Enter", el carácter de nueva línea ('\n') queda en el búfer del sistema.
-		 Cuando luego llamas a nextLine() para leer la entrada del usuario (por ejemplo, el código ISBN), si no consumes ese carácter de nueva línea pendiente, nextLine() podría simplemente leer ese carácter y devolver una cadena vacía.
-		 Por lo tanto, agregar sc.nextLine() antes de leer la entrada real del usuario garantiza que cualquier carácter de nueva línea pendiente se consuma antes de leer la entrada del usuario, evitando problemas inesperados con las entradas del usuario.
+		Consume the pending new line before reading user input. In this case, sc.nextLine() is added before the actual reading of the user input. This helps to consume the pending new line after the selected option in the menu.
+		After doing this, you should be able to read the user's input correctly without the "You haven't typed anything" message appearing for no apparent reason.
+		When working with standard input in Java, especially with Scanner objects, there may be new line characters ('\n') left hanging in the system buffer after reading a numeric value or string. This is common, for example, when you read a number with nextInt() and then perform an additional read with nextLine().
+
+		The line "//Consume pending newline before reading user input" refers to adding an additional nextLine() call to explicitly consume that newline left in the buffer after reading the numeric menu option. This is necessary because after the user enters a number and presses "Enter", the new line character ('\n') remains in the system buffer.
+		When you then call nextLine() to read user input (e.g. the ISBN code), if you don't consume that pending newline character, nextLine() could simply read that character and return an empty string.
+		Therefore, adding sc.nextLine() before reading actual user input ensures that any outstanding newline characters are consumed before reading user input, preventing unexpected problems with user input.
 		
 		*/
 			

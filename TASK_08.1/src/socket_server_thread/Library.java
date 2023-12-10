@@ -13,42 +13,42 @@ public class Library implements Runnable{
 
 	
 	
-	private ArrayList<Book> biblioteca = new ArrayList<>();
+	private ArrayList<Book> library = new ArrayList<>();
 	
-	private Thread hilo;
+	private Thread thread;
 	
-	private Socket socketAlCliente;
-	
-	
+	private Socket socketToClient;
 	
 	
-	public Library(Socket socketAlCliente) {		
+	
+	
+	public Library(Socket socketToCliente) {		
 		super();		
 		
-		cargarLibros();
+		loadBooks();
 		
-		this.socketAlCliente = socketAlCliente;
+		this.socketToClient = socketToCliente;
 		
-		hilo = new Thread(this);
+		thread = new Thread(this);
 		
-		hilo.start();
+		thread.start();
 		
 	}
 	
 	
 	
 	
-	private void cargarLibros() {
+	private void loadBooks() {
 	
-	biblioteca.add(new Book("1234", 20, "Ricardo falacias", "El día de la bestia"));
+	library.add(new Book("1234", 20, "Ricardo falacias", "Me and my friend"));
 	
-	biblioteca.add(new Book("5678", 30, "Alba Nada", "Schreck"));
+	library.add(new Book("5678", 30, "Alba Nada", "Schreck"));
 	
-	biblioteca.add(new Book("9012", 40, "Juan Todo", "La ruta"));
+	library.add(new Book("9012", 40, "Juan Todo", "the ham"));
 	
-	biblioteca.add(new Book("3456", 50, "María Roca", "Los 4 jarrones"));
+	library.add(new Book("3456", 50, "María Roca", "My java teacher"));
 	
-	biblioteca.add(new Book("7890", 60, "Juan Todo", "La galleta de la mala suerte"));
+	library.add(new Book("7890", 60, "Juan Todo", "A bad night"));
 	
 	}
 	
@@ -67,113 +67,111 @@ public class Library implements Runnable{
 		try {
 			
 			
-			PrintStream salida = new PrintStream(socketAlCliente.getOutputStream());
+			PrintStream output = new PrintStream(socketToClient.getOutputStream());
 			
-			InputStreamReader entrada = new InputStreamReader(socketAlCliente.getInputStream());
+			InputStreamReader input = new InputStreamReader(socketToClient.getInputStream());
 			
-			BufferedReader entradaBuffer = new BufferedReader(entrada);
-			
-			
+			BufferedReader bufferInput = new BufferedReader(input);
 			
 			
 			
-			boolean continuar = true;				
 			
-			while (continuar) {	
+			
+			boolean pursue = true;	// Continuar			
+			
+			while (pursue) {	
 				
 				
 				
-				String stringRecibido = entradaBuffer.readLine();	
+				String receivedString = bufferInput.readLine();	
 				
-				String[] datos = stringRecibido.split("-");	
+				String[] data = receivedString.split("-");	
 				
 				
 				
-				int caso = Integer.parseInt(datos[0]); 			
+				int caso = Integer.parseInt(data[0]); 	
 				
-				String complement = datos[1];	
+				String complement = data[1];					
 				
-						
-				
-				int price = Integer.parseInt(datos[2]);        // PROBLEM
+				int price = Integer.parseInt(data[2]);      
 								
-				String author = datos[3];
+				String author = data[3];
 				
-				String title = datos[4];
+				String title = data[4];
 						
 				
 								
 				if (caso == 0) {	
 					
 					
-					salida.println("OK");
+					output.println("OK");
 					
-					System.out.println(hilo.getName() + " ha cerrado la comunicacion");
+					System.out.println(thread.getName() + " has closed the communication.");
 					
-					continuar = false;
+					pursue = false;
 					
 					
 				} else if (caso == 1) {		
 					
 
-					ArrayList<Book> estanteria = new ArrayList<Book>();
+					ArrayList<Book> shelf = new ArrayList<Book>();
 					
 					
-					for(Book libro: biblioteca) {
+					for(Book book: library) {
 						
-						if(libro.getIsbn().equalsIgnoreCase(complement)) 						
+						if(book.getIsbn().equalsIgnoreCase(complement)) 						
 							
-							estanteria.add(libro);						
+							shelf.add(book);						
 						
 					}
 					
 					
-					salida.println(estanteria);
+					output.println(shelf);
 					
 					
 				  } else if (caso == 2) {
 					  
-					  ArrayList<Book> estanteria = new ArrayList<Book>();
+					  ArrayList<Book> shelf = new ArrayList<Book>();
 					  
-						for(Book libro: biblioteca) {
+						for(Book book: library) {
 							
-							if(libro.getTitulo().equalsIgnoreCase(title))						
+							if(book.getTitle().equalsIgnoreCase(title))						
 							
-								estanteria.add(libro);						
+								shelf.add(book);						
 							
 						}
 						
 						
-						salida.println(estanteria);
+						output.println(shelf);
 						
 						
 				  }	else if (caso == 3) {	
 					  
-					  ArrayList<Book> estanteria = new ArrayList<Book>();
+					  ArrayList<Book> shelf = new ArrayList<Book>();
 							
-							for(Book libro: biblioteca) {
+							for(Book book: library) {
 								
-								if(libro.getNombre().equalsIgnoreCase(author)) 						
+								if(book.getAuthor().equalsIgnoreCase(author)) 						
 								
-									estanteria.add(libro);						
+									shelf.add(book);						
 								
 							}
 							
 							
-							salida.println(estanteria);
+							output.println(shelf);
 							
 					
 				  }	else if (caso == 4) {									 		
 							
-								biblioteca.add(new Book(complement, price, author, title));
+								library.add(new Book(complement, price, author, title));
 								
-								salida.println("added");							
+								output.println("added");							
 							
 								
 					
 				  } else
 					  
-					  salida.println("El número seleccionado no está disponible");
+					  output.println("NO");
 					
 					
 				
@@ -185,19 +183,19 @@ public class Library implements Runnable{
 			
 			
 			
-			socketAlCliente.close();
+			socketToClient.close();
 			
 			
 			
 			
 		} catch (IOException e) {
 			
-			System.err.println("HiloContadorLetras: Error de entrada/salida");
+			System.err.println("LettersCounterThread: Input/output ERROR");
 			e.printStackTrace();
 			
 		} catch (Exception e) {
 			
-			System.err.println("HiloContadorLetras: Error");
+			System.err.println("LettersCounterThread: ERROR");
 			e.printStackTrace();
 			
 		}		

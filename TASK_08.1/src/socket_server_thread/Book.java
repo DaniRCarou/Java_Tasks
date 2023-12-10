@@ -6,22 +6,22 @@ public class Book {
 	
 	private String isbn;
 	
-	private int precio;
+	private int price;
 	
-	private String autor;
+	private String author;
 	
-	private String titulo;	
-	
-
+	private String title;	
 	
 
+	
 
-	public Book(String isbn, int precio, String autor, String titulo) {
+
+	public Book(String isbn, int price, String author, String title) {
 		super();
 		this.isbn = isbn;
-		this.precio = precio;		
-		this.titulo = titulo;
-		this.autor = autor;
+		this.price = price;			
+		this.author = author;
+		this.title = title;
 	}
 
 
@@ -35,33 +35,33 @@ public class Book {
 	}
 
 
-	public int getPrecio() {
-		return precio;
+	public int getPrice() {
+		return price;
 	}
 
 
-	public void setPrecio(int precio) {
-		this.precio = precio;
+	public void setPrice(int price) {
+		this.price = price;
 	}
 
 
-	public String getNombre() {
-		return autor;
+	public String getAuthor() {
+		return author;
 	}
 
 
-	public void setNombre(String nombre) {
-		this.autor = nombre;
+	public void setAuthor(String name) {
+		this.author = name;
 	}
 
 
-	public String getTitulo() {
-		return titulo;
+	public String getTitle() {
+		return title;
 	}
 
 
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	
@@ -72,7 +72,7 @@ public class Book {
 
 	@Override
 	public String toString() {
-		return "Libro [isbn= " + isbn + ", precio= " + precio + ", nombre= " + autor + ", titulo= " + titulo + "]";
+		return "Book: isbn= " + isbn + ", price= " + price + ", name= " + author + ", title= " + title;
 	}
 	
 	
