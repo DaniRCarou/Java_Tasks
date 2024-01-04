@@ -25,7 +25,7 @@ public class Library implements Runnable{
 	public Library(Socket socketToCliente) {		
 		super();		
 		
-		loadBooks();
+		loadingBooks();
 		
 		this.socketToClient = socketToCliente;
 		
@@ -38,7 +38,7 @@ public class Library implements Runnable{
 	
 	
 	
-	private void loadBooks() {
+	private void loadingBooks() {
 	
 	library.add(new Book("1234", 20, "Ricardo falacias", "Me and my friend"));
 	
@@ -53,9 +53,11 @@ public class Library implements Runnable{
 	}
 	
 	
-	
-	
-	
+	private synchronized void addBook (Book book) {
+		
+		library.add(book);	
+		
+	}
 	
 	
 	
@@ -163,7 +165,9 @@ public class Library implements Runnable{
 					
 				  }	else if (caso == 4) {									 		
 							
-								library.add(new Book(complement, price, author, title));
+					  			
+					  
+								addBook(new Book(complement, price, author, title) );
 								
 								output.println("added");							
 							
@@ -171,11 +175,7 @@ public class Library implements Runnable{
 					
 				  } else
 					  
-					  output.println("NO");
-					
-					
-				
-				
+					  output.println("NO");				
 			
 			
 			}

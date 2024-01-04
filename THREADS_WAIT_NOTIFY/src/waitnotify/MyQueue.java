@@ -91,7 +91,7 @@ public class MyQueue {
 		
 		// If the queue it´s full, it´s not possible to enter any other element, until another thread release space for another element
 	
-		while(queue.size() == MAX_ELEMENTS){//3
+		while(queue.size() == MAX_ELEMENTS){  //3
 			
 			
 			try {

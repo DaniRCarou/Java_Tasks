@@ -111,7 +111,7 @@ public class SocketClientThread {
 					System.out.println("Selected option: " + option + " -> Please, enter the ISBN code:");	// Displayed message			
 					
 					
-					text = sc.nextLine(); // Introduce new data
+					text = sc.nextLine(); // Enters ISBN code through console
 					
 					String data = option + "-" + text + "-" + 0 + "-" + null + "-" + null; // Here all the data is gathered, separated by a hyphen and the data that is not entered through the console will be filled in as null
 					
@@ -122,8 +122,7 @@ public class SocketClientThread {
 					
 				case 2:				
 					
-					System.out.println("Selected option: " + option + " -> Please, enter the book title");
-					
+					System.out.println("Selected option: " + option + " -> Please, enter the book title");					
 					
 					
 					text = sc.nextLine();
@@ -137,7 +136,8 @@ public class SocketClientThread {
 					
 				case 3:				
 										
-					System.out.println("Selected option: " + option + " -> Please, enter the book's author");					
+					System.out.println("Selected option: " + option + " -> Please, enter the book's author");	
+					
 					
 					text = sc.nextLine();
 					
@@ -209,7 +209,7 @@ public class SocketClientThread {
 			if(answer.trim().equalsIgnoreCase("OK"))	{
 				
 				
-			System.out.println( answer + ", Closed communication"); // CONSOLE	
+			System.out.println( answer + ", Communication closed"); // CONSOLE	
 			
 			
 			}else if (answer.trim().equalsIgnoreCase("NO")) {	
