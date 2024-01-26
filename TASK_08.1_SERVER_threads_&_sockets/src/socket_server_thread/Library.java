@@ -13,14 +13,20 @@ public class Library implements Runnable{
 
 	
 	
-	private ArrayList<Book> library = new ArrayList<>();
-	
-	private Thread thread;
-	
-	private Socket socketToClient;
 	
 	
+	private ArrayList<Book> library = new ArrayList<>(); // This is our Library
 	
+	private Thread thread; // We need to create this atribute use the thread
+	
+	private Socket socketToClient; // We use it to comunicate the library with the client
+	
+	
+	
+	
+	
+	
+	// Constructor where a new thread is created and started
 	
 	public Library(Socket socketToCliente) {		
 		super();		
@@ -38,6 +44,9 @@ public class Library implements Runnable{
 	
 	
 	
+	
+	// Books are entered in our library automatically
+	
 	private void loadingBooks() {
 	
 	library.add(new Book("1234", 20, "Ricardo falacias", "Me and my friend"));
@@ -53,6 +62,12 @@ public class Library implements Runnable{
 	}
 	
 	
+	
+	
+	
+	
+	// This method must be synchronized to avoid two users add a book at the same time
+	
 	private synchronized void addBook (Book book) {
 		
 		library.add(book);	
@@ -61,6 +76,10 @@ public class Library implements Runnable{
 	
 	
 	
+	
+	
+	// The run method starts a thread
+	
 	@Override
 	public void run() {	
 		
@@ -68,6 +87,8 @@ public class Library implements Runnable{
 		
 		try {
 			
+			
+			// Every time we create a thread, there will be a directly comunication with the client
 			
 			PrintStream output = new PrintStream(socketToClient.getOutputStream());
 			
@@ -79,15 +100,15 @@ public class Library implements Runnable{
 			
 			
 			
-			boolean pursue = true;	// Continuar			
+			boolean pursue = true;	// Continue. It is always true until the client push 0		
 			
 			while (pursue) {	
 				
 				
 				
-				String receivedString = bufferInput.readLine();	
+				String receivedString = bufferInput.readLine();	// Information comes in here
 				
-				String[] data = receivedString.split("-");	
+				String[] data = receivedString.split("-"); // Information is separated thanks to the split "-"
 				
 				
 				
@@ -110,7 +131,7 @@ public class Library implements Runnable{
 					
 					System.out.println(thread.getName() + " has closed the communication.");
 					
-					pursue = false;
+					pursue = false; // Continue. It is always true until the client push 0
 					
 					
 				} else if (caso == 1) {		
