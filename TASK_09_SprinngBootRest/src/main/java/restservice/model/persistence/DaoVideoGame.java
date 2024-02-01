@@ -1,4 +1,4 @@
-package serviciorest.model.persistence;
+package restservice.model.persistence;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,8 +11,8 @@ import restservice.model.entity.VideoGame;
 
 
  // DAO (Data Access Object), repository or persistence class.
- // This is an object responsible for handling connections to the database.
- 
+ // This is an CRUD object (Create, Read, Update, Delete), responsible for handling connections to the database.
+ // using the @Component annotation indicates that an object will be registered in the spring context
 
 @Component
 public class DaoVideoGame {

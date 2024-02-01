@@ -1,5 +1,6 @@
+###This is a Spring Boot project with Spring web starter
 
-Requirement 1
+#Requirement 1
 
 It is requested to create a REST service that will manage a series of video games.
 
@@ -15,15 +16,12 @@ Additionally, it is requested to perform the following tasks via Postman and obs
     Retrieve a video game by ID
     List all video games
 
-Evaluation: 5 out of 10 points
-
-Requirement 2
+#Requirement 2
 
 It is required that there cannot be two video games with the same ID or name.
 
-Evaluation: 1 out of 10 points
 
-Requirement 3
+#Requirement 3
 
 It is requested to create a Java application capable of interacting with the video game REST server. The application will display a menu capable of performing all server operations, such as:
 
@@ -36,9 +34,8 @@ It is requested to create a Java application capable of interacting with the vid
 
 For each option, the necessary data will be requested from the user and/or relevant results will be displayed. The application will run until the "exit" option is selected.
 
-Evaluation: 4 out of 10 points
 
-Considerations
+#Considerations
 
 For the entire activity, clarity of code, modularity, efficiency of employed algorithms, and explanatory comments on key points of the application (JavaDoc or regular comments, whichever is deemed more appropriate) will be evaluated.
 
