@@ -160,7 +160,7 @@ public class VideoGameController {
 	// @PathVariable("id") int id -> it converts the id from path to "int id"
 	// @RequestBody VideoGame v -> The JSON video game from the body will be converted to a VideoGame type object.  
 	
-	@PutMapping(path="videogames/{id}",produces=MediaType.APPLICATION_JSON_VALUE)
+	@PutMapping(path="videogames/{id}",consumes=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<VideoGame> modifyVideoGame(@PathVariable("id") int id, @RequestBody VideoGame v) {
 		
 	System.out.println("ID to modify: " + id);	
@@ -169,7 +169,10 @@ public class VideoGameController {
 	
 	v.setId(id);
 	
-	VideoGame vUpdate = daoVideoGame.update(v);
+	if (daoVideoGame.listByName(v.getName()).isEmpty()) {
+	
+	VideoGame vUpdate = daoVideoGame.update(v);	
+	
 	
 	if(vUpdate != null) {
 		
@@ -180,6 +183,13 @@ public class VideoGameController {
 		return new ResponseEntity<VideoGame>(HttpStatus.NOT_FOUND); // 404 NOT FOUND
 		
 	}
+	
+	}else
+		
+		System.out.println("The name entered already exists");
+	
+		return new ResponseEntity<VideoGame>(HttpStatus.ALREADY_REPORTED); // 208 Already Reported.
+	
 	
 	}
 	
