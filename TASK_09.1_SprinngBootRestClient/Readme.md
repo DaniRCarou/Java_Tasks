@@ -1,30 +1,8 @@
-###This is a Spring Boot project with Spring web starter
-
-This exercise is represented by task_09 and task_09.1. The first two requirements are represented in this task and the third requirement will be represented in task_09.1.
-
-In this task, I am going to create a server application, built with Spring Boot, that will be consumed by a client, represented in task_09.1.
+###This is the third requirement shown in the task_09 statement. It is a Spring Boot project with Spring web starter
 
 
-#Requirement 1
-
-It is requested to create a REST service that will manage a series of video games.
-
-The video games will have an ID, a name, a company, and a rating. The video games will be hosted on the REST server. When the server starts, it will have 5 pre-established video games with all the data filled in. The video games will be stored in memory using any type of data structure (such as a list).
-
-The REST service will provide a complete CRUD service and can be consumed using a client like Postman, with all message exchanges done through JSON.
-
-Additionally, it is requested to perform the following tasks via Postman and observe the results:
-
-    Create a new video game
-    Remove a video game by ID
-    Modify a video game by ID
-    Retrieve a video game by ID
-    List all video games
-
-#Requirement 2
-
-It is required that there cannot be two video games with the same ID or name.
-
+In this task, I am going to create the client application, built with Spring Boot, that will consume the Spring Boot service (TASK_09_SpringBootRest). 
+Being a Spring Boot application, it will be deployed on a server. Therefore, it will have to have a different configuration port (8081) than the TASK_09_SpringBootRest project (8080).
 
 #Requirement 3
 
