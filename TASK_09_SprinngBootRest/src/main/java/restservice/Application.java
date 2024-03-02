@@ -5,15 +5,18 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 
-
 /*
+
+ This is the entry point of our application. Spring web, will start the Tomcat server.
+
+	- @SpringBootApplication: With this annotation, Spring search for Spring annotations to register objects and inject dependencies.
+
+	- It will look for methods within this class with the @Bean annotation, to register them as objects within the Spring context.
+  
+	- To ensure that Spring Boot correctly detects all annotations and registers objects properly within the Spring context, 
+      all classes must be in the same package or in a child package of the application's root package.
  
- To ensure that Spring Boot correctly detects all annotations and registers objects properly within the Spring context, 
- all classes must be in the same package or in a child package of the application's root package.
-   
- */
-
-
+*/
 
 
 @SpringBootApplication

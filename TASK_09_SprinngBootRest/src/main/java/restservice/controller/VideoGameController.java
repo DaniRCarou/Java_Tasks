@@ -25,6 +25,20 @@ import restservice.model.persistence.DaoVideoGame;
 // If I decide to create a data base, in the class DaoVideoGame could be modified to acces in a database (methodes connect to a database), it is not necesary to change the controller class.
 // This object allows HTTP requests to be made from clients
 
+/*
+ 
+ - @RestController: With this annotation,it is indicated that Spring should register an object named VideoGameController.
+ 
+ - It indicates, that the methods of this class (endpoints) will be used as "endpoints" for our server.
+ 
+ 
+ 
+ 
+ */
+
+
+
+
 
 @RestController
 public class VideoGameController {

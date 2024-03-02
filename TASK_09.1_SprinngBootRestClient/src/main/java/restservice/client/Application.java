@@ -1,5 +1,7 @@
 package restservice.client;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -11,6 +13,13 @@ import org.springframework.web.client.RestTemplate;
 
 import restservice.client.entity.VideoGame;
 import restservice.client.service.VideoGameProxyService;
+
+// to test this applications it will be used "debug as", to watch it step by step
+// f6 -> to watch every step
+// f5 -> to go inside the methode
+
+
+
 
 
 
@@ -96,29 +105,115 @@ public class Application implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		
 		
-	System.out.println("***Starting the REST Client***");	
 		
-	System.out.println("*********Register a video game**********");	
+		
+		
+	System.out.println("***STARTING THE REST CLIENT***");	
 	
 	
 	
-	VideoGame videogame = new VideoGame();
-	
-	videogame.setName("Best Mafia");
-	
-	videogame.setCompany("Columbia");
-	
-	videogame.setGrade(9);
+		
+	System.out.println("************ Register a video game ************");
 	
 	
-	VideoGame vRegister = vps.register(videogame);
 	
-
+	
+	VideoGame videoGame = new VideoGame();
+	
+	videoGame.setName("Best Mafia");
+	
+	videoGame.setCompany("Columbia");
+	
+	videoGame.setGrade(9);
+	
+	
+	VideoGame vRegister = vps.register(videoGame);
+	
+	System.out.println("Registered video game: " + vRegister);
+	
+	
+	
+	
+	System.out.println("************ Getting the video game ************");
+	
+	
+	
+	
+	videoGame =vps.obtain(vRegister.getId());
+	
+	System.out.println("Video game with id 5: " + videoGame);
+	
+	
+	
+	
+	System.out.println("************ Modify a video game ************");
+	
+	
+	
+	
+	VideoGame vModify = new VideoGame();
+	
+	vModify.setId(vRegister.getId());
+	vModify.setName("Wonder");
+	vModify.setCompany("Taurus GmbH");
+	vModify.setGrade(9);
+	
+	boolean modified = vps.modify(vModify);
+	
+	System.out.println("Video game modified? " +  modified);
+	
+	
+	
+	
+	
+	System.out.println("************ Delete a video game ************");
+	
+	
+	
+	
+	boolean deleted = vps.delete(vRegister.getId());
+	
+	System.out.println("Video game with id 5 deleted? " + deleted);
+	
+	
+	
+	
+	
+	System.out.println("************ List video games ************");
+	
+	
+	
+	
+	List<VideoGame> videoGamesList = vps.list(null);
+	
+	videoGamesList.forEach((v) -> System.out.println(v)); // This is a Landa function, functional programming.
+	
+	
+	// videoGameList -> this list hast to be traversed
+	// forEach() -> for each element has to be executed this function: ((v) -> System.out.println(v)) 
+	// ((v) -> System.out.println(v)) -> this Landa function has or not input parameters "((v) ->" and after that the function we want to execute.
+	// (v) -> It is each element of the list.
+	
+	
+	
+	
+	stopApplication();
+	
+	
 	
 	
 			
 	}
+	
+	
+	
+	public void stopApplication() {
 		
+		SpringApplication.exit(context, () -> 0); // le pasamos una función landa, un código estándar de finalización.
+		
+	}
+	
+	
 	
 
 }
