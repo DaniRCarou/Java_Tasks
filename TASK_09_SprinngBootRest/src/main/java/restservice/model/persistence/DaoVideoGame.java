@@ -10,15 +10,20 @@ import restservice.model.entity.VideoGame;
 
 
 
- // DAO (Data Access Object), repository or persistence class.
- // This is an CRUD object (Create, Read, Update, Delete), responsible for handling connections to the database.
- // using the @Component annotation indicates that an object will be registered in the spring context
+ // DAO (Data Access Object), repository or persistence class. 
+ // This DAO object will allow doing the persistence. 
+ // In this case the DAO is simulated, created at the same DAO class
+ // But the methods of this class could be modified to access a database, and the controller class would remain the same.
+ // This is what allows layer programming.
+
+
+ // Using the @Component annotation indicates that an object will be registered in the spring context
 
 @Component
 public class DaoVideoGame {
 	
 	
-	
+ 
 	public List<VideoGame> VideoGameList;
 	
 	public int counter;
@@ -34,13 +39,27 @@ public class DaoVideoGame {
 	
 		System.out.println("DaoVideoGame -> Creating the Video game list");
 		
+		
+		// This object, VideoGameList will be created within the JVM and not within the Spring context, because a "new" has been done.
+		// Since this ArrayList object will be referenced by another object, DaoVideoGame, within the Spring context, 
+		// it will last as long as the DaoVideoGame object lasts.
+		
 		VideoGameList = new ArrayList<VideoGame>();
+		
+		
+		
+		
+		// Five objects will be created to be added to the VideoGameList
+		// These objects, VideoGame will be created within the JVM and not within the Spring context, because a "new" has been done.
 		
 		VideoGame v1 = new VideoGame(counter++, "It takes two", "Mi casa", 10); // ID: 0
 		VideoGame v2 = new VideoGame(counter++, "Worms", "Tu casa", 6); // ID: 1
 		VideoGame v3 = new VideoGame(counter++, "The last campfire", "Amigo", 7); // ID: 2
 		VideoGame v4 = new VideoGame(counter++, "Darksiders", "Vicio", 8); // ID: 3
 		VideoGame v5 = new VideoGame(counter++, "Monster energy supercross", "Star", 7); // ID: 4
+		
+		
+		// Every VideoGame will be added at the VideoGameList
 		
 		VideoGameList.add(v1);
 		VideoGameList.add(v2);
@@ -57,8 +76,10 @@ public class DaoVideoGame {
 	
 	
 	
-	// ESTO HAY QUE MODIFICARLO, LOS PARÁMETROS DE ENTRADA
 	
+	
+       // Returns a video game based on the array position.
+	 	
 	public VideoGame get(int position) { 
 		
 		try {

@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -17,8 +18,7 @@ import restservice.client.entity.VideoGame;
 // it will have to have a different configuration port (8081) than the TASK_09_SpringBootRest project (8080).
 
 
-// This class will make all requests to the VideoGameController
-
+// THIS CLASS WILL MAKE ALL REQUEST TO THE VideoGameController
 // With the annotation @Service, an object of type VideoGameProxyService will be registered within the Spring context.
 
 @Service
@@ -31,20 +31,29 @@ public class VideoGameProxyService {
 	
 	
 	
-	// the restTemplate type object will be injected here but created on the Application class.
-	
+	// The restTemplate type object will be injected here but created on the Application class.
+	// With the annotation @Autowired, dependency injection can be applied.
 	@Autowired
 	private RestTemplate restTemplate;
 	
 	
 	
+	
+	
+	
+	
+	
+	
+
+	
 	public VideoGame obtain(int id){
 		
 		try {
-			
+		
+		// It will be worked with ResponseEntity object
 		ResponseEntity<VideoGame> re= restTemplate.getForEntity(URL + id, VideoGame.class);
 		
-		HttpStatus hs= (HttpStatus) re.getStatusCode();
+		HttpStatus hs= re.getStatusCode();
 		
 		if(hs == HttpStatus.OK)	{
 			

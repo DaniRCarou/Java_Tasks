@@ -25,20 +25,17 @@ import restservice.model.persistence.DaoVideoGame;
 // If I decide to create a data base, in the class DaoVideoGame could be modified to acces in a database (methodes connect to a database), it is not necesary to change the controller class.
 // This object allows HTTP requests to be made from clients
 
+
+
 /*
  
  - @RestController: With this annotation,it is indicated that Spring should register an object named VideoGameController.
  
  - It indicates, that the methods of this class (endpoints) will be used as "endpoints" for our server.
  
- 
- 
- 
+ - These 'public' methods will serve us to receive HTTP requests from clients.
+  
  */
-
-
-
-
 
 @RestController
 public class VideoGameController {
@@ -60,12 +57,18 @@ public class VideoGameController {
 	// IT IS NOT POSIBLE TO HAVE IN THE SAME SERVICE, TWO MAPPED METHODES WITH THE SAME PATH AND THE SAME VERB (GET, POST,..) 
 	
 	
+	
+	
+	
+	
 	// PATH -> To get a video game by id we will write in the path, {id} to indicate that inside of "{}" will be a number.
 	// If there is no braces, it will show all the video games by id
 	// Inside the parentheses, you indicate what the input parameter is called and where you should replace it. 
 	// In this case, in the path, where there is a variable called {id}.
-	// Produces -> It will be the kind of message the cliente will see.
+	// Produces -> This is the http protocol header "content_type". It will be the kind of message the client will on the screen.
 	// ResponseEntity -> allow us, not only to get a  videoGame object, but also answer code, like "200 OK"
+	
+	// @getMapping -> When the URL makes a GET request to the 'videogames' resource, it will enter through this method.
 	
 	@GetMapping(path="videogames/{id}",produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<VideoGame> getVideoGame(@PathVariable("id") int id){
@@ -98,8 +101,7 @@ public class VideoGameController {
 	// As parameter, it will be introduce a Person type object. 
 
 	// @RequestBody -> When this endpoint receives the request, tries to convert the request body to a Person type object, thanks Jackson libraries
-	// 
-	
+		
 	@PostMapping(path="videogames", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<VideoGame> registerVideoGame(@RequestBody VideoGame v) {
 		
@@ -133,8 +135,8 @@ public class VideoGameController {
 	
 	
 	
-	// Example for this get method -> http://localhost:8080/videogames?name=xxxx
-	// required=false -> Means that it is not mandatory to write the name, if it´s true, it is mandatory to write a name
+	// Example for this GET method just in case a request parameter(?name=xxxxxx)  -> http://localhost:8080/videogames?name=xxxx
+	// At this sentence, (@RequestParam(name="name", required= false) String name), "required=false" means that it is not mandatory to write the name, if it´s true, it is mandatory to write a name
 	
 	@GetMapping(path="videogames", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<VideoGame>> listVideoGames(@RequestParam(name="name", required= false) String name){

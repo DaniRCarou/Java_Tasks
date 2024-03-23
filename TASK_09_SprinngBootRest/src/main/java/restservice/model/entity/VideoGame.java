@@ -1,5 +1,10 @@
 package restservice.model.entity;
 
+
+// This is the entity we will work with in our REST service
+// The basic operations that can be performed with this entity are: Create, Delete, Update and read. This is called a CRUD
+
+
 public class VideoGame {
 	
 	
