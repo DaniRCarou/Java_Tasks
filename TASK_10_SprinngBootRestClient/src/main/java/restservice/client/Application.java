@@ -14,7 +14,7 @@ import org.springframework.web.client.RestTemplate;
 import restservice.client.entity.VideoGame;
 import restservice.client.service.VideoGameProxyService;
 
-// to test this applications it will be used "debug as", to watch it step by step
+// To test this applications it will be used "debug as", to watch it step by step
 // f6 -> to watch every step
 // f5 -> to go inside the method
 
