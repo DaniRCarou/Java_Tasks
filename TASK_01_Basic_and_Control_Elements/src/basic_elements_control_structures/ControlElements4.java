@@ -40,7 +40,7 @@ public class ControlElements4 {
 			
 		System.out.println("Hello");
 			
-			break; 							// Without "break" couldn´t read each line and only would show the line "default"
+			break; 							// Without "break" could not read each line and only would show the line "default"
 			
 		case 2:
 			
