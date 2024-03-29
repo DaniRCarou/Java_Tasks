@@ -154,7 +154,7 @@ public class EnglishTest {
 			}	
 			
 			
-			
+			// The read variable must be closed
 			
 			
 			read.close();
