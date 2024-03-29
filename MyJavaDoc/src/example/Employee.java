@@ -1,5 +1,10 @@
 package example;
 
+
+
+
+// JAVADOC
+
 // There are three things that can be documented: The class, attributes and methods. 
 // Javadoc comments must always be placed before what we want to comment on, before the class, before the attributes and before the methods
 // It is possible to use HTML code
@@ -17,7 +22,16 @@ package example;
  * It looks for JavaDoc information in <a href="https://google.es">Google</a>
  * @author Daniel
  * @version 1.0  
+ * 
+ * To see other classes of this Package in Javadoc, is possible to create a link to the class:
+ * @see ExampleLink 
+ * 
  */
+
+
+
+
+
 public class Employee {
 	
 	
