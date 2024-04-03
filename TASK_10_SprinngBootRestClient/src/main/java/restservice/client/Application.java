@@ -154,7 +154,7 @@ public class Application implements CommandLineRunner {
 	videoGame.setGrade(9);	
 	
 	
-	VideoGame vRegister = vps.register(videoGame);
+	VideoGame vRegister = vps.register(videoGame);// F5 to watch the method in VideoGameProxyService
 	
 	
 	
@@ -222,8 +222,8 @@ public class Application implements CommandLineRunner {
 	
 	List<VideoGame> videoGamesList = vps.list(null);
 	
-	videoGamesList.forEach((v) -> System.out.println(v)); // This is a Landa function, functional programming.
 	
+	videoGamesList.forEach((v) -> System.out.println(v)); // This is a Landa function, functional programming.
 	
 	// videoGameList -> this list has to be traversed
 	// forEach() -> for each element has to be executed this function: ((v) -> System.out.println(v)) 

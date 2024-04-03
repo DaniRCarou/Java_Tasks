@@ -109,7 +109,7 @@ public class VideoGameController {
 					
 		
 		// It has to be checked if the list which return the method listByName(String Name), from the class DaoVideoGame, is empty.
-		// If the list is empty, means that it doesn´t exist a video game with the same name
+		// If the list is empty, means that it doesn't  exist a video game with the same name
 		// So it will be created
 		
 		if (daoVideoGame.listByName(v.getName()).isEmpty()) {
@@ -136,7 +136,7 @@ public class VideoGameController {
 	
 	
 	// Example for this GET method just in case a request parameter(?name=xxxxxx)  -> http://localhost:8080/videogames?name=xxxx
-	// At this sentence, (@RequestParam(name="name", required= false) String name), "required=false" means that it is not mandatory to write the name, if it´s true, it is mandatory to write a name
+	// At this sentence, (@RequestParam(name="name", required= false) String name), "required=false" means that it is not mandatory to write the name, if itï¿½s true, it is mandatory to write a name
 	
 	@GetMapping(path="videogames", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<VideoGame>> listVideoGames(@RequestParam(name="name", required= false) String name){
