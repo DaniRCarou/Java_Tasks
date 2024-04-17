@@ -122,6 +122,7 @@ public class DaoVideoGame {
 	public void add(VideoGame v) {
 		
 		v.setId(counter++);
+		
 		VideoGameList.add(v);
 		
 	}

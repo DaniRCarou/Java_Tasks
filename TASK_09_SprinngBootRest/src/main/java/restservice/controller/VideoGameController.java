@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestParam;//
 import org.springframework.web.bind.annotation.RestController;
 
 import restservice.model.entity.VideoGame;
@@ -121,9 +121,9 @@ public class VideoGameController {
 			
 		}else {
 		
-			System.out.println("The name entered already exists");
+		System.out.println("The name entered already exists");
 			
-			return new ResponseEntity<VideoGame>(HttpStatus.ALREADY_REPORTED); // 208 Already Reported.
+		return new ResponseEntity<VideoGame>(HttpStatus.ALREADY_REPORTED); // 208 Already Reported.
 		
 		}
 		
