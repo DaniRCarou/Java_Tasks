@@ -24,7 +24,7 @@ public class DaoVideoGame {
 	
 	
  
-	public List<VideoGame> VideoGameList;
+	public List<VideoGame> videoGameList;
 	
 	public int counter;
 	
@@ -44,7 +44,7 @@ public class DaoVideoGame {
 		// Since this ArrayList object will be referenced by another object, DaoVideoGame, within the Spring context, 
 		// it will last as long as the DaoVideoGame object lasts.
 		
-		VideoGameList = new ArrayList<VideoGame>();
+		videoGameList = new ArrayList<VideoGame>();
 		
 		
 		
@@ -61,11 +61,11 @@ public class DaoVideoGame {
 		
 		// Every VideoGame will be added at the VideoGameList
 		
-		VideoGameList.add(v1);
-		VideoGameList.add(v2);
-		VideoGameList.add(v3);
-		VideoGameList.add(v4);
-		VideoGameList.add(v5);
+		videoGameList.add(v1);
+		videoGameList.add(v2);
+		videoGameList.add(v3);
+		videoGameList.add(v4);
+		videoGameList.add(v5);
 		
 		
 	}
@@ -84,7 +84,7 @@ public class DaoVideoGame {
 		
 		try {
 			
-			return VideoGameList.get(position);
+			return videoGameList.get(position);
 			
 		}catch(IndexOutOfBoundsException iobe) {
 			
@@ -107,7 +107,7 @@ public class DaoVideoGame {
 	
 	public List<VideoGame> list(){
 		
-		return VideoGameList;
+		return videoGameList;
 		
 	}
 	
@@ -123,7 +123,7 @@ public class DaoVideoGame {
 		
 		v.setId(counter++);
 		
-		VideoGameList.add(v);
+		videoGameList.add(v);
 		
 	}
 	
@@ -139,7 +139,7 @@ public class DaoVideoGame {
 		
 		try {
 		
-			return VideoGameList.remove(position);
+			return videoGameList.remove(position);
 		
 		}catch (IndexOutOfBoundsException iobe) {
 			
@@ -164,7 +164,7 @@ public class DaoVideoGame {
 		
 	try {
 		
-		VideoGame vAux = VideoGameList.get(v.getId()); // With the ID, I should know which one I want to update, when I introduce the new video game, the Video game is located and saved in vAux variable. 
+		VideoGame vAux = videoGameList.get(v.getId()); // With the ID, I should know which one I want to update, when I introduce the new video game, the Video game is located and saved in vAux variable. 
 		
 		vAux.setName(v.getName());
 			
@@ -196,7 +196,7 @@ public class DaoVideoGame {
 		
 		List<VideoGame> VideoGameListAux = new ArrayList<VideoGame>();
 		
-		for(VideoGame v : VideoGameList) {
+		for(VideoGame v : videoGameList) {
 			
 			if(v.getName().equalsIgnoreCase(Name)) { // with "contains" would check to if every video game of the VideoGameList includes this name.
 				
