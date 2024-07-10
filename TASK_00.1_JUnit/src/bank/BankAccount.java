@@ -20,6 +20,7 @@ public class BankAccount {
 	}
 	
 	
+	// This method has to be tested two times, one with a positive amount and one with a negative amount.
 	
 	public int deposit(int amount) {
 		
@@ -27,12 +28,12 @@ public class BankAccount {
 			
 			balance += amount;
 			
-			return balance;
+			return balance; // For positive amount
 			
 			
 		} else
 			
-			return -1;
+			return -1; // For negative amount
 		
 		
 	}

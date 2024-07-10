@@ -6,6 +6,10 @@ public class ControlStructures {
 		
 		
 		
+		System.out.println("------------while-----------\n");
+		
+		
+		
 		// Exercise 2
 		
 
@@ -18,7 +22,7 @@ public class ControlStructures {
 		
 		
 		
-		System.out.println("------------while-----------\n");
+		
 		
 		
 		int num = 100;
