@@ -192,15 +192,82 @@ do {
 				
 				
 				
+				boolean	control;
+				
+				do {
+					
+				control = true;	
+					
 				System.out.println("Enter the id: ");
 				
 				id = sc.nextInt();
 				
 				sc.nextLine();
 				
-				System.out.println("Enter the plate: ");
 				
-				plate = sc.nextLine();
+				
+				for (Car car : warehouse.getCarsList()) {
+					
+		            if (car.getId() == id) {
+		            	
+		                System.out.println("Car already exists!");
+		                
+		                control = false;
+		                
+		                break; // Exit the for loop
+		                
+		            }
+				
+				}
+				
+				
+				
+				
+				}while(control == false);
+				
+				
+				
+				
+						
+				
+				
+				
+				boolean	control2;
+				
+				do {
+					
+				control2 = true;	
+					
+				System.out.println("Enter the Plate: ");
+				
+				plate = sc.nextLine();			
+				
+				
+				
+				
+				for (Car car : warehouse.getCarsList()) {
+					
+		            if (car.getPlate().equals(plate)) {
+		            	
+		                System.out.println("Car already exists!");
+		                
+		                control2 = false;
+		                
+		                break; // Exit the for loop
+		                
+		            }
+				
+				}
+				
+				
+				
+				
+				}while(control2 == false);
+				
+				
+				
+				
+				
 				
 				System.out.println("Enter the brand: ");
 				
