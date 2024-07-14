@@ -1,8 +1,4 @@
 package carRegistration;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +16,18 @@ public class Warehouse {
 	
 	
 	
+	public List<Car> getCarsList() {
+		return carsList;
+	}
+
+
+
+	public void setCarsList(List<Car> carsList) {
+		this.carsList = carsList;
+	}
+
+
+
 	public void addCar(Car car) {
 		
 		this.carsList.add(car);		
@@ -80,14 +88,14 @@ public class Warehouse {
 	}
 	
 	
-	public void addCarObject(File fn) throws IOException {
-		
-		FileOutputStream fos = new FileOutputStream(fn); try (ObjectOutputStream oos = new ObjectOutputStream(fos)) {
-			oos.writeObject(carsList);
-		}
+	
+	
+	
+
+	@Override
+	public String toString() {
+		return "Warehouse [carsList=" + carsList + "]";
 	}
-	
-	
 	
 	
 	

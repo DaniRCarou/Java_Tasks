@@ -1,15 +1,19 @@
 package carRegistration;
 
+import java.io.DataOutputStream;
+import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.Scanner;
 
 public class MainRegistration {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ClassNotFoundException {
 		
 		
 		
@@ -36,7 +40,7 @@ public class MainRegistration {
 		File fn = new File("cars.dat"); // This is the file I want to work. This is a relative way  to classpath. 			
 		
 		
-		
+		File fn2 = new File("cars.csv");
 		
 		
 		
@@ -50,55 +54,50 @@ public class MainRegistration {
 			
 			
 			
+			try(FileInputStream fis = new FileInputStream(fn); ObjectInputStream buffer = new ObjectInputStream(fis)){
 			
-		try(FileInputStream file = new FileInputStream(fn); ObjectInputStream buffer = new ObjectInputStream(file)) {
-			
-			
-			boolean eof = false; // Esto indica que el final de fichero es falso, por tanto debe leer
-			
-			Car car; // Necesito este objeto paraguardar el objeto que lea
+			boolean eof = false;
 			
 			
-			while(!eof) {	// leeremos hasta el final de fichero			
+			
+			
+			while(!eof) {
+				
 				
 				try {
 					
-					
-					car = (Car) buffer.readObject(); // leo el objeto mientras eof sea true
-					
-					
-					warehouse.addCar(car);
-					
-					
-				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+                    Car c = (Car) buffer.readObject();
+                    
+                    System.out.println(c);  // Just for testing
+                    
+                    warehouse.addCar(c);
+                    
+                } catch (EOFException e) {
+                	
+                    eof = true; //  eof = true; or "break;" The end of the file has been reached
+                    
+                }			
 				
 				
+				
+			}
+			
+			
+			
+			
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 				
 			
-				}
-				
-				
-				
-				
-			} catch (FileNotFoundException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+			
 		
-		
-		
-		
-		
-		
+			
 		}
 		
 		
@@ -123,7 +122,9 @@ do {
 			
 			System.out.println("3. Consult a car by id: ");
 			
-			System.out.println("4. Car's list: ");
+			System.out.println("4. Add to a CSV file: ");
+			
+			System.out.println("5. Car's list: ");
 			
 			System.out.println("\nOption? ");
 			
@@ -147,15 +148,35 @@ do {
 			
 			case 0: 					
 				
+				
+				
+				
 				try {
+					fn.createNewFile();
 					
-					warehouse.addCarObject(fn);
 					
-				} catch (IOException e) {					
+				try(FileOutputStream fios = new FileOutputStream(fn); ObjectOutputStream ois = new ObjectOutputStream(fios)){
 					
-					e.printStackTrace();
+
+					for(Car car: warehouse.getCarsList()) {
+						
+						ois.writeObject(car);
+						
+					}
+					
 					
 				}
+					
+					
+					
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}		
+				
+				
+				
+			
 				
 				System.out.println("Bye bye...");
 				
@@ -196,8 +217,22 @@ do {
 				
 				Car carOu = new Car(id, plate, brand, model, color);
 				
-				
 				warehouse.addCar(carOu);
+				
+				
+				/*
+				
+				// THIS IS JUST FOR TESTING
+				
+				Car carOu1 = new Car(1111, "A1357", "ford", "focus", "red");
+				Car carOu2 = new Car(2222, "B2468", "opel", "corsa", "grey");
+				Car carOu3 = new Car(3333, "C3579", "fiat", "600", "white");
+				
+				warehouse.addCar(carOu1);
+				warehouse.addCar(carOu2);
+				warehouse.addCar(carOu3);
+				
+				*/
 				
 				
 				break;
@@ -248,7 +283,43 @@ do {
 				break;
 				
 				
-			case 4: 
+			case 4:
+				
+				
+				try {
+					
+					
+					fn2.createNewFile();
+					
+					
+				try(FileOutputStream fios = new FileOutputStream(fn2); DataOutputStream ois = new DataOutputStream(fios)){
+					
+					
+					ois.writeUTF("Id; Plate; Brand; Model; Color\n");
+
+					for(Car car: warehouse.getCarsList()) {
+						
+						ois.writeUTF(car.getId() + ";" + car.getPlate() + ";" + car.getBrand() + ";" + car.getModel() + ";" + car.getColor()+ "\n");
+						
+						
+					}
+					
+					
+				}
+					
+					
+					
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				
+				break;
+				
+				
+				
+			case 5: 
 				
 				warehouse.consultList();
 				
