@@ -3,8 +3,9 @@ package application;
 
 import java.util.Scanner;
 
-import model.Persistence.DaoCar;
 import model.entity.Car;
+
+//import model.Persistence.DaoCar;
 
 
 public class MainRegistration {
@@ -25,11 +26,14 @@ public class MainRegistration {
 		
 		
 
-		DaoCar warehouse = new DaoCar(); // I need a this object type to use its methods and store them in the array
+		// DaoCar warehouse = new DaoCar(); // I need a this object type to use its methods and store them in the array
 		
 		Scanner sc = new Scanner(System.in); // I need this object to start the writing through the console
 		
 		int option = 0; // It is necessary to access to the command menú which will be showed in the console		
+		
+		
+		
 		
 		
 		
@@ -39,9 +43,9 @@ public class MainRegistration {
 			
 			System.out.println("ENTER AN OPTION: \n");
 			
-			System.out.println("0. Close the programm : ");
+			System.out.println("0. Close the programm");
 			
-			System.out.println("1. Add a new car by id: ");
+			System.out.println("1. Add a new car: ");
 			
 			System.out.println("2. Delete a car by id: ");
 			
@@ -50,6 +54,8 @@ public class MainRegistration {
 			System.out.println("4. Modify a car by id: ");
 			
 			System.out.println("5. Car's list: ");
+			
+			System.out.println("6. Passenger management: ");
 			
 			System.out.println("\nOption? ");
 			
@@ -88,7 +94,7 @@ public class MainRegistration {
 				
 				
 				
-				boolean	control2;
+				/* boolean	control2;
 				
 				do {
 					
@@ -174,7 +180,7 @@ public class MainRegistration {
 				
 				
 				
-				warehouse.deleteCarById(id);			
+				// warehouse.deleteCarById(id);			
 				
 				
 				
@@ -195,7 +201,7 @@ public class MainRegistration {
 				
 				
 				
-				warehouse.consultCarById(id);
+				// warehouse.consultCarById(id);
 					
 					
 				
@@ -244,7 +250,7 @@ public class MainRegistration {
 				
 				
 				
-				warehouse.update(cModify);
+				//warehouse.update(cModify);
 				
 				
 				
@@ -254,13 +260,130 @@ public class MainRegistration {
 				
 			case 5: 
 				
-				warehouse.consultList();
+				//warehouse.consultList();
 				
 				
 				break;		
 			
 				
+			
+				
+				
+			case 6: 	
+				
+				
+				
+				
+				int option2 = 0;
+				
+				do {					
+					
+					
+					System.out.println("ENTER AN OPTION: \n");
+					
+					System.out.println("0. Close the programm");
+					
+					System.out.println("1. Add a passenger: ");
+					
+					System.out.println("2. Delete a passenger by id: ");
+					
+					System.out.println("3. Consult a passenger by id: ");
+					
+					System.out.println("4. Passenger´s list: ");
+					
+					System.out.println("\nOption? ");
+					
+					
+					
+					
+					option2 = sc.nextInt();
+					
+					sc.nextLine();
+					
+					int pId;
+					
+					int cId;
+					
+					
+					switch(option2) {
+					
+					
+					
+					case 0: 					
+					
+						
+						System.out.println("Bye bye...");
+						
+						
+						break;
+					
+					
+					case 1: 					
+						
+						System.out.println("Option " + option2 + " selected");
+						
+						System.out.println("Please, enter the passenger id: ");
+					
+						pId = sc.nextInt();sc.nextLine();
+						
+						System.out.println("Please, enter the car id: ");
+						
+						cId = sc.nextInt();sc.nextLine();
+						
+						break;
+						
+					case 2: 
+
+						System.out.println("Option " + option2 + " selected");
+						
+						System.out.println("Please, enter the passenger id: ");
+					
+						pId = sc.nextInt();sc.nextLine();
+						
+						System.out.println("Please, enter the car id: ");
+						
+						cId = sc.nextInt();sc.nextLine();
+						
+						break;
+						
+					case 3: 
+
+						System.out.println("Option " + option + " selected");
+						
+						System.out.println("Please, enter the passenger id: ");
+					
+						pId = sc.nextInt();sc.nextLine();
+						
+						
+						
+						break;
+						
+					case 4:
+						
+						System.out.println("Option " + option + " selected");						
+												
+						System.out.println("Please, enter the car id: ");
+						
+						cId = sc.nextInt();sc.nextLine();
+						
+						break;
+						
+						
+					default: 
+						
+						System.out.println("wrong option");
+						
+					}
+					
+				
+				}while(option2!=0);
+				
+				
 							
+				
+				break;
+							
+				
 				default: 
 					
 					System.out.println("wrong option");

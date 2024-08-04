@@ -1,8 +1,18 @@
 package model.entity;
 
-
+import java.util.ArrayList;
+import java.util.List;
 
 public class Car {
+	
+	
+	
+	
+	public List<Passenger> passengerList;
+	
+	
+	
+	
 	
 	
 	private int id;
@@ -21,6 +31,9 @@ public class Car {
 	
 	public Car() {
 		super();
+		
+		passengerList = new ArrayList<Passenger>();
+		
 	}
 	
 	
@@ -30,10 +43,12 @@ public class Car {
 	public Car(String plate, String brand, String model, String color) {
 		super();
 		
+		passengerList = new ArrayList<Passenger>();
 		this.plate = plate;
 		this.brand = brand;
 		this.model = model;
 		this.color = color;
+		
 	}
 	
 	
