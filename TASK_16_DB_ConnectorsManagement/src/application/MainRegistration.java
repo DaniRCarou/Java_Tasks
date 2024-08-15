@@ -1,11 +1,13 @@
 package application;
 
 
+import java.util.List;
 import java.util.Scanner;
 
 import model.entity.Car;
+import model.persistences.DaoCarMySql;
 
-//import model.Persistence.DaoCar;
+import model.persistence.interfaces.DaoCar;
 
 
 public class MainRegistration {
@@ -24,9 +26,18 @@ public class MainRegistration {
 		
 		String color;
 		
+		int passengerId;
+		
+		String name;
+		
+		int age;
+		
+		double weight;
+		
+		int carId;
 		
 
-		// DaoCar warehouse = new DaoCar(); // I need a this object type to use its methods and store them in the array
+		DaoCar dc = new DaoCarMySql(); // I need a this object type to use its methods and store them in the array
 		
 		Scanner sc = new Scanner(System.in); // I need this object to start the writing through the console
 		
@@ -39,7 +50,7 @@ public class MainRegistration {
 		
 		do {
 			
-			
+			// These are the options that will be displayed
 			
 			System.out.println("ENTER AN OPTION: \n");
 			
@@ -62,8 +73,7 @@ public class MainRegistration {
 			
 			
 			
-			
-			// In this variable will be stored what it is wrote through the console
+			// To entered the option
 			
 			option = sc.nextInt();
 			
@@ -94,40 +104,10 @@ public class MainRegistration {
 				
 				
 				
-				/* boolean	control2;
 				
-				do {
-					
-				control2 = true;	
-					
 				System.out.println("Enter the Plate: ");
 				
-				plate = sc.nextLine();			
-				
-				
-				
-				
-				for (Car car : warehouse.getCarsList()) {
-					
-		            if (car.getPlate().equals(plate)) {
-		            	
-		                System.out.println("Car already exists!");
-		                
-		                control2 = false;
-		                
-		                break; // Exit the for loop
-		                
-		            }
-				
-				}			
-				
-				
-				}while(control2 == false);
-				
-				
-				
-				
-				
+				plate = sc.nextLine();				
 				
 				System.out.println("Enter the brand: ");
 				
@@ -142,24 +122,36 @@ public class MainRegistration {
 				color = sc.nextLine();				
 				
 				
-				Car carOu = new Car(plate, brand, model, color);
-				
-				warehouse.addCar(carOu);
 				
 				
-				/*
 				
-				// THIS IS JUST FOR TESTING
+				Car carOu = new Car();
 				
-				Car carOu1 = new Car(1111, "A1357", "ford", "focus", "red");
-				Car carOu2 = new Car(2222, "B2468", "opel", "corsa", "grey");
-				Car carOu3 = new Car(3333, "C3579", "fiat", "600", "white");
+				carOu.setPlate(plate);
 				
-				warehouse.addCar(carOu1);
-				warehouse.addCar(carOu2);
-				warehouse.addCar(carOu3);
+				carOu.setBrand(brand);
 				
-				*/
+				carOu.setModel(model);
+				
+				carOu.setColor(color);
+				
+				
+				
+				
+				
+				boolean register = dc.register(carOu);
+				
+				if(register){
+					
+					System.out.println("The car was registered");
+				
+				}else{
+					
+					System.out.println("The car was not registered");
+				
+				}
+				
+				
 				
 				
 				break;
@@ -179,8 +171,17 @@ public class MainRegistration {
 				sc.nextLine();
 				
 				
+				boolean delete = dc.delete(id);
 				
-				// warehouse.deleteCarById(id);			
+				if(delete){
+					
+					System.out.println("The car was deleted");
+				
+				}else{					
+					
+					System.out.println("The car was not deleted");
+				
+				}		
 				
 				
 				
@@ -201,9 +202,9 @@ public class MainRegistration {
 				
 				
 				
-				// warehouse.consultCarById(id);
+				Car car = dc.read(id);
 					
-					
+				System.out.println(car);	
 				
 	
 	
@@ -236,21 +237,35 @@ public class MainRegistration {
 			    color = sc.nextLine();
 			    
 			    
-			    Car cModify = new Car();				
+			    Car carOu2 = new Car();				
 				
-			    cModify.setId(id);
+			    carOu2.setId(id);
 			    
-				cModify.setPlate(plate);
+				carOu2.setPlate(plate);
 				
-				cModify.setBrand(brand);
+				carOu2.setBrand(brand);
 				
-				cModify.setModel(model);
+				carOu2.setModel(model);
 				
-				cModify.setColor(color);
+				carOu2.setColor(color);
 				
 				
 				
-				//warehouse.update(cModify);
+				
+				boolean modify = dc.update(carOu2);
+				
+				if(modify){
+					
+					System.out.println("The car was registered");
+				
+				}else{
+					
+					System.out.println("The car was not registered");
+				
+				}
+				
+				
+				
 				
 				
 				
@@ -260,8 +275,18 @@ public class MainRegistration {
 				
 			case 5: 
 				
-				//warehouse.consultList();
 				
+				
+				List<Car> carList = dc.list();
+				
+				for(Car c : carList){
+					
+					System.out.println(c);
+					
+				}
+				
+				
+						
 				
 				break;		
 			
@@ -291,6 +316,12 @@ public class MainRegistration {
 					
 					System.out.println("4. Passenger´s list: ");
 					
+					System.out.println("5. Add passenger to a car: ");
+					
+					System.out.println("6. Remove passenger from a car: ");
+					
+					System.out.println("7. List all passengers in a car.: ");
+					
 					System.out.println("\nOption? ");
 					
 					
@@ -300,11 +331,7 @@ public class MainRegistration {
 					
 					sc.nextLine();
 					
-					int pId;
-					
-					int cId;
-					
-					
+										
 					switch(option2) {
 					
 					
@@ -322,13 +349,21 @@ public class MainRegistration {
 						
 						System.out.println("Option " + option2 + " selected");
 						
-						System.out.println("Please, enter the passenger id: ");
+						System.out.println("Please, enter the passenger's id: ");
 					
-						pId = sc.nextInt();sc.nextLine();
+						passengerId = sc.nextInt();sc.nextLine();
 						
-						System.out.println("Please, enter the car id: ");
+						System.out.println("Please, enter the passenger's name: ");
 						
-						cId = sc.nextInt();sc.nextLine();
+						name = sc.nextLine();
+						
+						System.out.println("Please, enter the passenger's age: ");
+						
+						age = sc.nextInt();sc.nextLine();						
+						
+						System.out.println("Please, enter the passenger's weight: ");
+						
+						weight = sc.nextDouble();sc.nextLine();
 						
 						break;
 						
@@ -338,11 +373,12 @@ public class MainRegistration {
 						
 						System.out.println("Please, enter the passenger id: ");
 					
-						pId = sc.nextInt();sc.nextLine();
+						passengerId = sc.nextInt();sc.nextLine();
 						
 						System.out.println("Please, enter the car id: ");
 						
-						cId = sc.nextInt();sc.nextLine();
+						
+						carId = sc.nextInt();sc.nextLine();
 						
 						break;
 						
@@ -352,7 +388,7 @@ public class MainRegistration {
 						
 						System.out.println("Please, enter the passenger id: ");
 					
-						pId = sc.nextInt();sc.nextLine();
+						passengerId = sc.nextInt();sc.nextLine();
 						
 						
 						
@@ -364,7 +400,45 @@ public class MainRegistration {
 												
 						System.out.println("Please, enter the car id: ");
 						
-						cId = sc.nextInt();sc.nextLine();
+						carId = sc.nextInt();sc.nextLine();
+						
+						break;
+						
+					case 5:
+						
+						
+						System.out.println("Option " + option2 + " selected");
+						
+						System.out.println("Please, enter the passenger id: ");
+					
+						passengerId = sc.nextInt();sc.nextLine();
+						
+						System.out.println("Please, enter the car id: ");
+						
+						System.out.println("\nOption: ");
+						
+						List<Car> carList2 = dc.list();
+						
+						for(Car c : carList2){
+							
+							System.out.println(c);
+							
+						}
+						
+						
+						carId = sc.nextInt();sc.nextLine();
+						
+						break;
+						
+						
+					case 6:
+						
+						
+						break;
+						
+						
+					case 7:
+						
 						
 						break;
 						

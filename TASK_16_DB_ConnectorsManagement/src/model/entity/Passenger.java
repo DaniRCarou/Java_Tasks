@@ -8,7 +8,7 @@ public class Passenger {
 	private int id;
 	private String name;
 	private int age;
-	private int weight;
+	private double weight;
 	
 	
 	
@@ -18,7 +18,7 @@ public class Passenger {
 
 
 
-	public Passenger(int id, String name, int age, int weight) {
+	public Passenger(int id, String name, int age, double weight) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -64,13 +64,13 @@ public class Passenger {
 
 
 
-	public int getWeight() {
+	public double getWeight() {
 		return weight;
 	}
 
 
 
-	public void setWeight(int weight) {
+	public void setWeight(double weight) {
 		this.weight = weight;
 	}
 

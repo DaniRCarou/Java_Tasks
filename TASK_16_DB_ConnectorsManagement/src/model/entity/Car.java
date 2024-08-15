@@ -8,7 +8,7 @@ public class Car {
 	
 	
 	
-	public List<Passenger> passengerList;
+	public List<Passenger> passengerList = new ArrayList<>();
 	
 	
 	
@@ -24,35 +24,6 @@ public class Car {
 	private String model;
 	
 	private String color;
-	
-	
-	
-	
-	
-	public Car() {
-		super();
-		
-		passengerList = new ArrayList<Passenger>();
-		
-	}
-	
-	
-	
-
-
-	public Car(String plate, String brand, String model, String color) {
-		super();
-		
-		passengerList = new ArrayList<Passenger>();
-		this.plate = plate;
-		this.brand = brand;
-		this.model = model;
-		this.color = color;
-		
-	}
-	
-	
-			
 		
 
 

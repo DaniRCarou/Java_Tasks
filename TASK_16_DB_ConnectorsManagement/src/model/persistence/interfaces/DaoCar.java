@@ -8,7 +8,7 @@ public interface DaoCar {
 	
 	
 	
-	boolean create(Car c);
+	boolean register(Car c);
 	
 	Car read(int id);	
 	
