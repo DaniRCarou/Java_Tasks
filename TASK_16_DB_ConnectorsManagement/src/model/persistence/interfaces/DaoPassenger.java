@@ -20,7 +20,7 @@ public interface DaoPassenger {
 	
 	boolean deletePassFromCar(int pId, int cId);
 	
-	public List<Passenger> listPassEveryCar(int id);	
+	public List<Passenger> listPassFromCar(int id);	
 	
 	
 	

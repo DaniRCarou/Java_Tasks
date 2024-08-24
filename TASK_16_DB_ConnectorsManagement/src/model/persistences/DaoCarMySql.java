@@ -291,13 +291,19 @@ public class DaoCarMySql implements DaoCar{
 
 	@Override
 	public List<Car> list() {
+		
 		if(!openConnection()){
+			
 			return null;
+			
 		}		
+		
 		List<Car> carList = new ArrayList<>();
 		
 		String query = "select ID,PLATE,BRAND,MODEL,COLOR from cars";
+		
 		try {
+			
 			PreparedStatement ps = con.prepareStatement(query);
 			
 			ResultSet rs = ps.executeQuery();
@@ -317,7 +323,9 @@ public class DaoCarMySql implements DaoCar{
 				car.setColor(rs.getString(5));
 				
 				carList.add(car);
+				
 			}
+			
 		} catch (SQLException e) {
 			
 			System.out.println("listar -> error al obtener las " + "personas");

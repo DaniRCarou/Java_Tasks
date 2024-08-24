@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 import model.entity.Passenger;
 import model.persistence.interfaces.DaoPassenger;
 
@@ -86,7 +87,7 @@ public class DaoPassengerMySql implements DaoPassenger{
 		
 		
 		String query = "insert into passengers (ID,NAME,AGE,WEIGHT) "
-				+ " values(?,?,?,?,?)";
+				+ " values(?,?,?,?)";
 		
 		
 		try {
@@ -181,7 +182,7 @@ public class DaoPassengerMySql implements DaoPassenger{
 		
 		Passenger p = null;
 		
-		String query = "select ID,NAME,AGE,WEIGHT from passengers " + "where id = ?";
+		String query = "select ID,NAME,AGE,WEIGHT,CARID from passengers " + "where id = ?";
 	
 		try {
 			
@@ -195,11 +196,11 @@ public class DaoPassengerMySql implements DaoPassenger{
 				
 				p = new Passenger();
 				
-				p.setId(rs.getInt(1));
-				
+				p.setId(rs.getInt(1));				
 				p.setName(rs.getString(2));
 				p.setAge(rs.getInt(3));
-				p.setWeight(rs.getDouble(4));				
+				p.setWeight(rs.getDouble(4));		
+				p.setCarId(rs.getInt(5));
 				
 			}
 			
@@ -234,7 +235,7 @@ public class DaoPassengerMySql implements DaoPassenger{
 		List<Passenger> passList = new ArrayList<>();
 		
 		
-		String query = "select ID,NAME,AGE,WEIGHT from passengers";
+		String query = "select ID,NAME,AGE,WEIGHT,CARID from passengers";
 		
 		try {
 			
@@ -252,7 +253,9 @@ public class DaoPassengerMySql implements DaoPassenger{
 				
 				p.setAge(rs.getInt(3));
 				
-				p.setWeight(rs.getDouble(4));			
+				p.setWeight(rs.getDouble(4));	
+				
+				p.setCarId(rs.getInt(5));
 				
 				passList.add(p);				
 				
@@ -294,17 +297,16 @@ public class DaoPassengerMySql implements DaoPassenger{
 		boolean added = true;		
 		
 		
-		String query = "UPDATE passengers, SET carId = cId WHERE id = pId";
+		String query = "UPDATE passengers SET carId = ? WHERE id = ?";
 		
 		
 		try {
 			
-			PreparedStatement ps = con.prepareStatement(query);
-		
-			ps.setInt(1, pId);
+			PreparedStatement ps = con.prepareStatement(query);		
 			
-			ps.setInt(2, cId);
+			ps.setInt(1, cId);
 		
+			ps.setInt(2, pId);
 		
 			int affectedRowsNumber = ps.executeUpdate();
 			
@@ -355,17 +357,16 @@ public class DaoPassengerMySql implements DaoPassenger{
 		boolean deleted = true;		
 		
 		
-		String query = "UPDATE passengers, Delete carId = cId WHERE id = pId";
+		String query = "UPDATE passengers SET carId = NULL WHERE id = ? AND carId = ?";
 		
 		
 		try {
 			
-			PreparedStatement ps = con.prepareStatement(query);
-		
+			PreparedStatement ps = con.prepareStatement(query);			
+			
 			ps.setInt(1, pId);
 			
-			ps.setInt(2, cId);
-		
+			ps.setInt(2, cId);		
 		
 			int affectedRowsNumber = ps.executeUpdate();
 			
@@ -417,30 +418,62 @@ public class DaoPassengerMySql implements DaoPassenger{
 	
 
 	@Override
-	public List<Passenger> listPassEveryCar(int carId) {
+	public List<Passenger> listPassFromCar(int carId) {
 		
 		
 		if(!openConnection()){
 			
-			return false;
+			return null;
 			
 		}			
 		
-		boolean listed = true;		
+		List<Passenger> pList = new ArrayList<>();
 		
 		
-		String query = "UPDATE passengers, Delete carId = cId WHERE id = pId";
+		String query = "SELECT * FROM passengers WHERE carId = ?";
 		
 		
 		try {
 			
 			PreparedStatement ps = con.prepareStatement(query);
+			
+			ps.setInt(1, carId);
 		
-		
-		
-		
-		
-		return null;	
+			ResultSet rs = ps.executeQuery();
+				
+			while(rs.next()){
+					
+				Passenger psngr = new Passenger();
+					
+				psngr.setId(rs.getInt(1));
+					
+				psngr.setName(rs.getString(2));
+					
+				psngr.setAge(rs.getInt(3));
+				
+				psngr.setCarId(rs.getInt(4));
+					
+				psngr.setWeight(rs.getDouble(5));	
+				
+				
+								
+				pList.add(psngr);
+					
+				}
+				
+			} catch (SQLException e) {
+				
+				System.out.println("list -> Error retrieving " + "passengers in the car with id: " + carId);
+				
+				e.printStackTrace();
+				
+			} finally {
+				
+				closeConnection();
+				
+			}		
+			
+			return pList;
 		
 		
 		

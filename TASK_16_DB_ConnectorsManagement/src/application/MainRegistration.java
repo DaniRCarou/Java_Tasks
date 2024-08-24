@@ -5,10 +5,11 @@ import java.util.List;
 import java.util.Scanner;
 
 import model.entity.Car;
+import model.entity.Passenger;
 import model.persistences.DaoCarMySql;
-
+import model.persistences.DaoPassengerMySql;
 import model.persistence.interfaces.DaoCar;
-
+import model.persistence.interfaces.DaoPassenger;
 
 public class MainRegistration {
 
@@ -38,6 +39,11 @@ public class MainRegistration {
 		
 
 		DaoCar dc = new DaoCarMySql(); // I need a this object type to use its methods and store them in the array
+		
+		DaoPassenger dp = new DaoPassengerMySql();
+		
+		
+		
 		
 		Scanner sc = new Scanner(System.in); // I need this object to start the writing through the console
 		
@@ -139,7 +145,7 @@ public class MainRegistration {
 				
 				
 				
-				boolean register = dc.register(carOu);
+				boolean register = dc.register(carOu); // I will save it in a variable to use it to know if it was registered
 				
 				if(register){
 					
@@ -304,7 +310,7 @@ public class MainRegistration {
 				do {					
 					
 					
-					System.out.println("ENTER AN OPTION: \n");
+					System.out.println("\nOPTION 6 IS SELECTED, PLEASE ENTER THE NEXT OPTION: \n");
 					
 					System.out.println("0. Close the programm");
 					
@@ -347,11 +353,9 @@ public class MainRegistration {
 					
 					case 1: 					
 						
-						System.out.println("Option " + option2 + " selected");
+						System.out.println("Option " + option2 + " from submenu was selected");
 						
-						System.out.println("Please, enter the passenger's id: ");
-					
-						passengerId = sc.nextInt();sc.nextLine();
+						
 						
 						System.out.println("Please, enter the passenger's name: ");
 						
@@ -365,43 +369,87 @@ public class MainRegistration {
 						
 						weight = sc.nextDouble();sc.nextLine();
 						
+						
+						Passenger psn = new Passenger();
+						
+						psn.setName(name);
+						psn.setAge(age);
+						psn.setWeight(weight);
+						
+						
+						boolean register1 = dp.register(psn); // I will save it in a variable to use it to know if it was registered
+						
+						if(register1){
+							
+							System.out.println("The passenger was registered");
+						
+						}else{
+							
+							System.out.println("The passenger was not registered");
+						
+						}
+						
+						
+						
 						break;
 						
 					case 2: 
 
-						System.out.println("Option " + option2 + " selected");
+						System.out.println("Option " + option2 + " from submenu was selected");
 						
 						System.out.println("Please, enter the passenger id: ");
 					
-						passengerId = sc.nextInt();sc.nextLine();
-						
-						System.out.println("Please, enter the car id: ");
+						passengerId = sc.nextInt();sc.nextLine();					 
 						
 						
-						carId = sc.nextInt();sc.nextLine();
+						boolean delete1 = dp.delete(passengerId);
+						
+						if(delete1){
+							
+							System.out.println("The passenger was deleted");
+						
+						}else{					
+							
+							System.out.println("The passenger was not deleted");
+						
+						}		
+						
 						
 						break;
 						
 					case 3: 
 
-						System.out.println("Option " + option + " selected");
+						System.out.println("Option " + option2 + " from submenu was selected");
 						
 						System.out.println("Please, enter the passenger id: ");
 					
 						passengerId = sc.nextInt();sc.nextLine();
 						
+						Passenger p = dp.read(passengerId);
 						
+						System.out.println(p);
 						
 						break;
 						
 					case 4:
 						
-						System.out.println("Option " + option + " selected");						
+						System.out.println("Option " + option2 + " from submenu was selected");						
 												
-						System.out.println("Please, enter the car id: ");
+						List<Passenger> pList = dp.list();
 						
-						carId = sc.nextInt();sc.nextLine();
+						if( pList.isEmpty()) {
+							
+							System.out.println("\n THERE IS NO PASSENGER");
+							
+						}else {
 						
+						for(Passenger p1 : pList){
+							
+							System.out.println(p1);
+							
+						}
+						
+						}
 						break;
 						
 					case 5:
@@ -413,20 +461,33 @@ public class MainRegistration {
 					
 						passengerId = sc.nextInt();sc.nextLine();
 						
-						System.out.println("Please, enter the car id: ");
+						System.out.println("These are the cars available, please enter the car id: ");
 						
-						System.out.println("\nOption: ");
 						
-						List<Car> carList2 = dc.list();
+						List<Car> carList1 = dc.list();
 						
-						for(Car c : carList2){
+						for(Car c : carList1){
 							
 							System.out.println(c);
 							
 						}
 						
+						System.out.println("\nEnter the car id: ");
 						
 						carId = sc.nextInt();sc.nextLine();
+						
+						
+						boolean update = dp.addPassToCar(passengerId, carId);
+						
+						if(update){
+							
+							System.out.println("The passenger was added");
+						
+						}else{					
+							
+							System.out.println("The passenger was not added");
+						
+						}	
 						
 						break;
 						
@@ -434,11 +495,98 @@ public class MainRegistration {
 					case 6:
 						
 						
+						System.out.println("Option " + option2 + " selected");
+						
+						
+						System.out.println("\nTHESE ARE THE PASSENGERS IN EVERY CAR");
+						
+						List<Car> carList2 = dc.list();						
+						
+						
+						
+						
+						for(Car c : carList2){																
+							
+							List<Passenger> pList1 = dp.listPassFromCar(c.getId());
+							
+							if( pList1.isEmpty()) {
+								
+								System.out.println("\nThere is no passenger in this car");
+								
+								System.out.println("CAR: " + c);
+								
+							}else {
+								System.out.println("\nThese are the passengers in this car: ");
+								
+							System.out.println("CAR: " + c);
+							
+							for(Passenger p1 : pList1){
+								
+								System.out.println(p1);
+								
+							}
+							
+							}			
+							
+							
+						}
+						
+						
+						
+						
+						
+						
+						System.out.println("\nPlease, enter the passenger id: ");
+					
+						passengerId = sc.nextInt();sc.nextLine();
+						
+						System.out.println("Please, enter the car id: ");
+						
+						carId = sc.nextInt();sc.nextLine();
+						
+						
+						boolean delete2 = dp.deletePassFromCar(passengerId, carId);
+						
+						if(delete2){
+							
+							System.out.println("The passenger was deleted");
+						
+						}else{					
+							
+							System.out.println("The passenger was not deleted");
+						
+						}	
+						
+						
+						
 						break;
 						
 						
 					case 7:
 						
+						
+						System.out.println("Option " + option2 + " selected");
+						
+						System.out.println("Please, enter the car id: ");
+					
+						carId = sc.nextInt();sc.nextLine();					
+						
+						
+						List<Passenger> pList1 = dp.listPassFromCar(carId);
+						
+						if( pList1.isEmpty()) {
+							
+							System.out.println("\n THERE IS NO PASSENGER");
+							
+						}else {
+						
+						for(Passenger p1 : pList1){
+							
+							System.out.println(p1);
+							
+						}
+						
+						}
 						
 						break;
 						

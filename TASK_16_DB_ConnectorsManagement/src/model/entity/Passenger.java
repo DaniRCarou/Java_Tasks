@@ -9,7 +9,7 @@ public class Passenger {
 	private String name;
 	private int age;
 	private double weight;
-	
+	private int carId;
 	
 	
 	public Passenger() {
@@ -18,12 +18,13 @@ public class Passenger {
 
 
 
-	public Passenger(int id, String name, int age, double weight) {
+	public Passenger(int id, String name, int age, double weight, int carId) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.age = age;
 		this.weight = weight;
+		this.carId = carId;
 	}
 
 
@@ -76,12 +77,27 @@ public class Passenger {
 
 
 	
+	public int getCarId() {
+		return carId;
+	}
+
+
+
+	public void setCarId(int id) {
+		this.carId = id;
+	}
+
+	
+	
+	
+	
+	
 	
 	
 
 	@Override
 	public String toString() {
-		return "Passenger [id=" + id + ", name=" + name + ", age=" + age + ", weight=" + weight + "]";
+		return "Passenger: id=" + id + ", name=" + name + ", age=" + age + ", weight=" + weight + ", carId=" + carId ;
 	}
 	
 	
