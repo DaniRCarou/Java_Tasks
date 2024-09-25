@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="3.0" xmlns="https://jakarta.ee/xml/ns/persistence" xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd">
+    <persistence-unit name="JPATest" transaction-type="RESOURCE_LOCAL">
+		
+		<!-- Specify the JPA provider -->
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+		
+		<!-- Here we will write down all the classes that we want JPA to read the annotations to be able to map them to the DB. -->
+		<class>model.entity.Author</class>
+        <class>model.entity.Book</class>
+        <class>model.entity.Bookstore</class>
+        <class>model.entity.Publisher</class>
+		
+		<properties>
+			
+				
+			<!-- A series of minimum parameters must be indicated to tell JPA so that it can connect to the DB. -->
+			
+			<!-- This is the connection driver -->
+			<property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+			<!-- Here is indicated where the DB is. -->
+			<property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/jpa"/>
+			<!-- This is the user value -->
+			<property name="jakarta.persistence.jdbc.user" value="root"/>
+			
+			
+			<!-- 
+			We can indicate the following parameters to the database generation action: 
+			create -> if we want to create the database every time we start the application.
+			drop-and-create -> every time we start the app the tables will be deleted and created from scratch.
+			update -> to only refresh the tables in case of annotation changes
+			-->
+			<property name="jakarta.persistence.schema-generation.database.action" value="create"/>
+						 
+			<!--  hibernate 
+			<property name = "hibernate.show_sql" value = "true" />
+			<property name = "hibernate.dialect" value = "org.hibernate.dialect.MySQL8Dialect" />
+			-->
+			
+			<!-- Show sql traces and set dialect with eclipselink -->
+			<property name="eclipselink.logging.level.sql" value="FINE" />
+			<property name="eclipselink.logging.parameters" value="true" />
+			
+			
+			
+			
+			
+		</properties>
+		
+		
+	</persistence-unit>
+</persistence>

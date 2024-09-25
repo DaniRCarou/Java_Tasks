@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="3.0" xmlns="https://jakarta.ee/xml/ns/persistence" xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd">
+    <persistence-unit name="JPATest" transaction-type="RESOURCE_LOCAL">
+        
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        
+        <class>model.entity.Author</class>
+        <class>model.entity.Book</class>
+        <class>model.entity.Bookstore</class>
+        <class>model.entity.Publisher</class>
+        
+        <properties>
+            <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/jpa"/>
+            <property name="jakarta.persistence.jdbc.user" value="root"/>
+            <property name="jakarta.persistence.schema-generation.database.action" value="create"/>
+            
+            <!-- EclipseLink specific properties -->
+            <property name="eclipselink.logging.level.sql" value="FINE"/>
+            <property name="eclipselink.logging.parameters" value="true"/>
+        </properties>
+    </persistence-unit>
+</persistence>
