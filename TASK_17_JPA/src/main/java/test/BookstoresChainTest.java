@@ -13,6 +13,62 @@ import model.entity.Book;
 import model.entity.Bookstore;
 import model.entity.Publisher;
 
+
+
+
+
+/*
+
+1. RELACION BIDIRECCIONAL Y LADO PROPIETARIO DE LA RELACIÓN:
+
+En JPA, las relaciones bidireccionales tienen un concepto clave: el lado propietario (owning side) y el lado inverso (inverse side). 
+El lado propietario es el responsable de mantener la relación en la base de datos. Solo los cambios en el lado propietario son reflejados en la base de datos, mientras que el lado inverso simplemente refleja los cambios que se hacen en el lado propietario.
+En ambos ejemplos (Bookstore-Book y Airline-Terminal), al parecer el comportamiento de la relación es diferente porque la configuración de las entidades puede estar definida de manera distinta.
+
+
+
+
+2. CONFIGURACIÓN DE LA RELACIÓN Bookstore-Book:
+
+En el caso de Bookstore-Book, la razón por la cual parece que no hay problema es que el lado propietario de la relación está bien definido. 
+Lo más probable es que:
+
+    Bookstore sea el lado propietario de la relación.
+    Book sea el lado inverso.
+
+Si la relación está configurada correctamente con la anotación mappedBy en el lado de Book, entonces JPA entiende que las actualizaciones solo deben ser gestionadas desde el lado de Bookstore. 
+Por eso, cuando asignas los libros a las librerías y persistes las librerías, JPA actualiza automáticamente la tabla intermedia sin necesidad de que actualices el lado inverso (es decir, no necesitas asignar las librerías a los libros).
+ 
+*/
+
+
+
+
+
+
+/*
+ 
+ 1. Bidirectional Relationship and Owning Side:
+
+In JPA, bidirectional relationships have a key concept: the owning side and the inverse side. 
+The owning side is responsible for maintaining the relationship in the database. Only changes made to the owning side are reflected in the database, while the inverse side simply reflects changes made on the owning side.
+In both examples (Bookstore-Book and Airline-Terminal), the behavior of the relationships might seem different because the entity configurations may be defined differently.
+
+
+
+2. Configuration of the Bookstore-Book Relationship:
+
+In the case of Bookstore-Book, the reason it seems to work without issues is that the owning side of the relationship is well-defined.
+Most likely:
+
+    Bookstore is the owning side of the relationship.
+    Book is the inverse side.
+
+If the relationship is configured correctly with the mappedBy annotation on the Book side, then JPA understands that updates only need to be managed from the Bookstore side. Therefore, when you assign books to bookstores and persist the bookstores, JPA automatically updates the join table without needing to update the inverse side (i.e., you don’t need to assign bookstores to the books).
+ 
+*/
+
+
 public class BookstoresChainTest {
 
 	public static void main(String[] args) {

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<book>
+    <bookshops>
+        <bookshop>
+            <id>0</id>
+            <name>Rolland business</name>
+            <owner>John Doe</owner>
+        </bookshop>
+        <bookshop>
+            <id>0</id>
+            <name>Balaidos</name>
+            <owner>María del Rocío</owner>
+        </bookshop>
+    </bookshops>
+    <id>1</id>
+    <price>10.2</price>
+    <title>Holy wassa</title>
+</book>

@@ -36,8 +36,7 @@ public final class Bookstore {
 	
 	
 	
-	
-	
+	// THIS IS THE OWNING SIDE	
 	@ManyToMany	
 	@JoinTable(name="bookstores_books",
 	   joinColumns= { @JoinColumn(name="fk_bookstore_id", referencedColumnName="id") }, 

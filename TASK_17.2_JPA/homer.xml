@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<author id="1">
+    <name>Homer</name>
+    <surnames>Simpson</surnames>
+    <birthday>1983-11-02T14:01:00.453+01:00</birthday>
+    <copies>
+        <copy>
+            <bookshops>
+                <bookshop>
+                    <id>0</id>
+                    <name>Rolland business</name>
+                    <owner>John Doe</owner>
+                </bookshop>
+                <bookshop>
+                    <id>0</id>
+                    <name>Balaidos</name>
+                    <owner>María del Rocío</owner>
+                </bookshop>
+            </bookshops>
+            <id>1</id>
+            <price>10.2</price>
+            <title>Holy wassa</title>
+        </copy>
+        <copy>
+            <id>2</id>
+            <price>15.0</price>
+            <title>The way you are</title>
+        </copy>
+        <copy>
+            <id>3</id>
+            <price>18.0</price>
+            <title>I want you</title>
+        </copy>
+        <copy>
+            <id>4</id>
+            <price>3.8</price>
+            <title>It always remind me of you</title>
+        </copy>
+    </copies>
+</author>

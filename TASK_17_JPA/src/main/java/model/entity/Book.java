@@ -64,11 +64,16 @@ public class Book {
 	
 	
 	
-/*
+	
+	
+	
+	
+	/*
 	In a @ManyToMany relationship, JPA automatically creates an intermediate table (or join table) in the database that contains the foreign keys of both entities to represent the relationship.
 	This avoids the need to have foreign keys directly in one of the involved tables.
-*/	
-	@ManyToMany(mappedBy = "Books")
+	*/	
+	// THIS IS THE INVERSE SIDE
+	@ManyToMany(mappedBy = "books")
 	private List<Bookstore> bookstores;
 	
 	
